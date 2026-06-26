@@ -56,6 +56,12 @@ export default defineNuxtConfig({
   // CSR shells that read the URL. Seed both locale roots so the crawler can
   // discover the signs list + 12 detail pages (/* is a redirect under `prefix`).
   nitro: {
+    // Force a pure static build even inside Cloudflare's build env, which
+    // otherwise auto-selects the `cloudflare-module` server preset. That preset
+    // + `nuxt generate` emits no worker entry (index.mjs) and overrides our
+    // wrangler config, breaking `wrangler deploy`. We ship the prerendered
+    // output as an assets-only Worker via wrangler.jsonc instead.
+    preset: 'static',
     prerender: {
       crawlLinks: true,
       routes: ['/zh', '/en', '/zh/signs', '/en/signs'],
