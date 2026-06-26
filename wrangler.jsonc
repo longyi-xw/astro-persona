@@ -1,0 +1,14 @@
+{
+  // Cloudflare Workers (Workers Builds) deploy config. The site is fully static
+  // (`pnpm generate` → .output/public), so this is an assets-only Worker: no
+  // server script, Cloudflare just serves the prerendered files from the edge.
+  // `name` must match the Worker created in the dashboard.
+  "name": "astro-persona",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": ".output/public",
+    // unmatched paths → the prerendered 404 page (real routes are all prerendered;
+    // /zh/result, /en/match … resolve via auto directory-index handling)
+    "not_found_handling": "404-page"
+  }
+}
