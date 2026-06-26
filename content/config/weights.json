@@ -1,0 +1,28 @@
+{
+  "_comment": "Tunable parameters (design/02 §5). Editing this is 'calibration' — rerun pnpm test afterwards to keep mutation rate in 15–30%. age.bands index aligns with ResultState.ageBand.",
+  "age": {
+    "bands": [
+      { "id": "<18", "alpha": 0.10 },
+      { "id": "18-25", "alpha": 0.20 },
+      { "id": "26-35", "alpha": 0.35 },
+      { "id": "36-45", "alpha": 0.50 },
+      { "id": "46+", "alpha": 0.65 }
+    ]
+  },
+  "mutation": {
+    "tauBase": 0.22,
+    "beta": 0.12,
+    "levelOffsets": [0.1, 0.2],
+    "driverCount": 2
+  },
+  "match": {
+    "withIdeal": { "w1": 0.5, "w2": 0.3, "w3": 0.2 },
+    "withoutIdeal": { "w1": 0.6, "w2": 0.4, "w3": 0.0 },
+    "mutationMultiplier": 0.6,
+    "wSim": 0.5,
+    "wComp": 0.5,
+    "similarityDims": ["earth", "water", "order"],
+    "complementDims": ["fire", "water", "expr"],
+    "topN": 5
+  }
+}

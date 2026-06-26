@@ -1,0 +1,6 @@
+# Cloudflare Pages / Netlify edge rules (first match wins).
+# Root has no page under the i18n `prefix` strategy → send to default locale.
+/            /zh/         302
+# SPA fallback: any unmatched path serves the app shell (real pages are
+# prerendered and match before this). Static assets (_nuxt/*) match first.
+/*           /200.html    200

@@ -1,0 +1,43 @@
+{
+  "_comment": "领域文案，供 TemplateNarrativeProvider 查表拼装。占位符：{sign} 星座名、{dims} 维度标签、{dominant}/{missing} 维度、{relation} 关系、{factors}/{ideal} 匹配因子。",
+  "archetypes": {
+    "fire": { "name": "炽焰先锋", "latin": "The Ember Vanguard" },
+    "earth": { "name": "磐石筑梦人", "latin": "The Bedrock Builder" },
+    "air": { "name": "长风思辨者", "latin": "The Gale Thinker" },
+    "water": { "name": "潮汐织梦者", "latin": "The Tide Weaver" }
+  },
+  "dims": { "fire": "火", "earth": "土", "air": "风", "water": "水", "expr": "显", "order": "序" },
+  "dimsFull": { "fire": "火·行动", "earth": "土·务实", "air": "风·思辨", "water": "水·共情", "expr": "外显", "order": "守序" },
+  "keywords": {
+    "fire": ["主动", "热望", "不安分"],
+    "earth": ["笃定", "秩序", "耐性"],
+    "air": ["思辨", "灵动", "求新"],
+    "water": ["共情", "直觉", "深流"],
+    "expr": ["外显", "表达", "在场"],
+    "order": ["条理", "克制", "守序"]
+  },
+  "mutationLabel": { "0": "典型", "1": "微异", "2": "显异", "3": "极异" },
+  "mutation": {
+    "0": "你的人格与{sign}的基线高度贴合——星座这次说对了。",
+    "1": "你与{sign}基线开始出现裂隙：{dims}已经不太像剧本里的样子。",
+    "2": "你已经走出了星座给的剧本。这一切，都是你一路经历换来的。",
+    "3": "你几乎重写了{sign}：你的人格不再由星座定义，而由你走过的路定义。"
+  },
+  "relation": {
+    "same": "同象同频",
+    "sextile": "异象互补",
+    "square": "张力相激",
+    "opposition": "两极相吸",
+    "neutral": "各有其道"
+  },
+  "connectors": {
+    "similar": "在{dims}上同频",
+    "complement": "在{dims}上互补",
+    "and": "、",
+    "idealHigh": "，且与你的理想型高度契合",
+    "idealMid": "，与理想型契合中等",
+    "listSep": "，"
+  },
+  "personality": "{archetype}：你由{dominant}主导，{missing}相对沉默——结论来自维度得分，而非泛泛而谈。",
+  "matchSummary": "把你的真实人格摊开看，这几位最接得住你。"
+}

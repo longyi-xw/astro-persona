@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<svg viewBox="{{ viewBox }}" width="100%" height="100%" style="display:block; overflow:visible">
+  <defs>
+    <filter id="compassGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="{{ blur }}" result="b"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="b"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+    <radialGradient id="compassVeil" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="{{ accent }}" stop-opacity="0.10"></stop>
+      <stop offset="100%" stop-color="{{ accent }}" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+
+  <circle cx="{{ cx }}" cy="{{ cy }}" r="{{ outerR }}" fill="url(#compassVeil)"></circle>
+
+  <sc-for list="{{ rings }}" as="r" hint-placeholder-count="3">
+    <circle cx="{{ cx }}" cy="{{ cy }}" r="{{ r }}" fill="none" stroke="#C9A24B" stroke-opacity="0.14" stroke-width="1"></circle>
+  </sc-for>
+
+  <sc-for list="{{ axes }}" as="ax" hint-placeholder-count="6">
+    <line x1="{{ cx }}" y1="{{ cy }}" x2="{{ ax.x }}" y2="{{ ax.y }}" stroke="#C9A24B" stroke-opacity="0.20" stroke-width="1"></line>
+  </sc-for>
+
+  <sc-if value="{{ hasBaseline }}" hint-placeholder-val="{{ false }}">
+    <polygon points="{{ baselinePts }}" fill="none" stroke="#9FC1D4" stroke-opacity="0.6" stroke-width="{{ baseStroke }}" stroke-dasharray="{{ dash }}" stroke-linejoin="round"></polygon>
+  </sc-if>
+
+  <polygon points="{{ dataPts }}" fill="{{ accent }}" fill-opacity="0.16" stroke="{{ accent }}" stroke-width="{{ strokeW }}" stroke-linejoin="round" filter="url(#compassGlow)"></polygon>
+
+  <sc-for list="{{ axes }}" as="ax" hint-placeholder-count="6">
+    <circle cx="{{ ax.dx }}" cy="{{ ax.dy }}" r="{{ nodeR }}" fill="{{ ax.color }}"></circle>
+  </sc-for>
+
+  <circle cx="{{ cx }}" cy="{{ cy }}" r="{{ coreR }}" fill="{{ accent }}" fill-opacity="0.9" filter="url(#compassGlow)"></circle>
+
+  <sc-if value="{{ showLabels }}" hint-placeholder-val="{{ false }}">
+    <sc-for list="{{ axes }}" as="ax" hint-placeholder-count="6">
+      <text x="{{ ax.lx }}" y="{{ ax.ly }}" fill="#F4EFE6" fill-opacity="0.78" font-size="{{ labelSize }}" text-anchor="middle" dominant-baseline="middle" font-family="'IBM Plex Mono', monospace" letter-spacing="0.04em">{{ ax.label }}</text>
+    </sc-for>
+  </sc-if>
+</svg>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:320},&quot;vector&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{fire:number;earth:number;air:number;water:number;expr:number;order:number}&quot;},&quot;baseline&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;object&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:320,&quot;min&quot;:80,&quot;max&quot;:900,&quot;tsType&quot;:&quot;number&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C9A24B&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showLabels&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const size = this.props.size ?? 320;
+    const cx = size / 2, cy = size / 2;
+    const R = size * 0.36;
+    const v = this.props.vector ?? { fire: .85, earth: .35, air: .68, water: .3, expr: .72, order: .42 };
+    const dims = ['fire', 'earth', 'air', 'water', 'expr', 'order'];
+    const colors = { fire: '#E2683C', earth: '#8A9A5B', air: '#9FC1D4', water: '#2E7C8A', expr: '#C9A24B', order: '#C9A24B' };
+    const labelText = { fire: '火', earth: '土', air: '风', water: '水', expr: '显', order: '序' };
+    const ang = i => (-90 + i * 60) * Math.PI / 180;
+    const at = (val, i, rad) => {
+      const r = rad * val;
+      return [cx + r * Math.cos(ang(i)), cy + r * Math.sin(ang(i))];
+    };
+    const axes = dims.map((d, i) => {
+      const [x, y] = at(1, i, R);
+      const [dx, dy] = at(v[d] ?? 0.5, i, R);
+      const [lx, ly] = at(1.2, i, R);
+      return { x, y, dx, dy, lx, ly, color: colors[d], label: labelText[d] };
+    });
+    const dataPts = dims.map((d, i) => at(v[d] ?? 0.5, i, R).join(',')).join(' ');
+    const base = this.props.baseline;
+    const hasBaseline = !!base;
+    const baselinePts = hasBaseline ? dims.map((d, i) => at(base[d] ?? 0.5, i, R).join(',')).join(' ') : '';
+    return {
+      viewBox: `0 0 ${size} ${size}`,
+      cx, cy, outerR: R * 1.05,
+      rings: [R * 0.34, R * 0.67, R],
+      axes, dataPts, baselinePts, hasBaseline,
+      accent: this.props.accent ?? '#C9A24B',
+      strokeW: Math.max(1.4, size * 0.007),
+      baseStroke: Math.max(1, size * 0.004),
+      dash: `${size * 0.018} ${size * 0.018}`,
+      nodeR: Math.max(2, size * 0.013),
+      coreR: Math.max(1.5, size * 0.01),
+      blur: size * 0.008,
+      showLabels: !!this.props.showLabels,
+      labelSize: size * 0.05
+    };
+  }
+}
+</script>
+</body>
+</html>

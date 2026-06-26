@@ -1,0 +1,22 @@
+{
+  "q1": { "scenario": "A free weekend opens up. You'd rather—", "options": { "a": "Go somewhere on a whim", "b": "Finish what you'd planned at home" } },
+  "q2": { "scenario": "Facing a big decision, you usually—", "options": { "a": "Listen to your gut first", "b": "Lay out the pros and cons first" } },
+  "q3": { "scenario": "You walk into a party full of strangers. You'll—", "options": { "a": "Work the room and become the center of it", "b": "Find one person you click with and go deep" } },
+  "q4": { "scenario": "A conflict flares up. Your first move is to—", "options": { "a": "Hash it out face to face, right now", "b": "Step back and process it on your own first" } },
+  "q5": { "scenario": "Handed a brand-new project, you tend to—", "options": { "a": "Just start, and figure it out as you go", "b": "Map the plan and the steps first" } },
+  "q6": { "scenario": "A free afternoon. You'd rather—", "options": { "a": "Move your body, or do something competitive", "b": "Read and quietly learn something" } },
+  "q7": { "scenario": "A friend vents a problem to you. You'd rather—", "options": { "a": "Help them analyze it and offer fixes", "b": "Just listen and feel it with them" } },
+  "q8": { "scenario": "Your ideal desk is—", "options": { "a": "Tidy and ordered, everything in its place", "b": "Spread out and free, inspiration within reach" } },
+  "q9": { "scenario": "On a trip, you'll—", "options": { "a": "Build a detailed itinerary", "b": "Wander, no plan at all" } },
+  "q10": { "scenario": "When a strong feeling hits, you tend to—", "options": { "a": "Show it, let it be seen", "b": "Hold it in and handle it quietly" } },
+  "q11": { "scenario": "On a team, the role you fall into is—", "options": { "a": "The one who sets direction and calls it", "b": "The one who fills gaps and nails the details" } },
+  "q12": { "scenario": "Faced with a decent status quo, you'd rather—", "options": { "a": "Chase the new idea that just popped up", "b": "Polish what already works into something better" } },
+  "q13": { "scenario": "A risky opportunity is on the table. You'll—", "options": { "a": "Bet on the upside", "b": "Protect what you already have first" } },
+  "q14": { "scenario": "Challenged to your face, you're more likely to—", "options": { "a": "Argue your case and make the point", "b": "Go quiet, take it in, revisit later" } },
+  "q15": { "scenario": "With a deadline ahead, you usually—", "options": { "a": "Move early and steady, leaving slack", "b": "Push it to the end and sprint" } },
+  "q16": { "scenario": "After back-to-back new faces, you feel—", "options": { "a": "More alive the more you talk—fully charged", "b": "A bit spent, needing alone time to recharge" } },
+  "q17": { "scenario": "Toward the rules as given, you're closer to—", "options": { "a": "Question them, and bend them when needed", "b": "Respect the structure—the rules feel safer" } },
+  "q18": { "scenario": "What moves you more easily?", "options": { "a": "The beauty in a piece of art, a feeling", "b": "Something genuinely useful that solves a problem" } },
+  "q19": { "scenario": "Joining a group effort to help, you'd rather—", "options": { "a": "Organize it and split the work", "b": "Tend to people's feelings and needs" } },
+  "q20": { "scenario": "If one line had to capture you—", "options": { "a": "I act", "b": "I build", "c": "I feel" } }
+}

@@ -1,0 +1,43 @@
+{
+  "_comment": "Domain copy for TemplateNarrativeProvider. Placeholders: {sign} {dims} {dominant} {missing} {relation} {factors} {ideal}.",
+  "archetypes": {
+    "fire": { "name": "The Ember Vanguard", "latin": "The Ember Vanguard" },
+    "earth": { "name": "The Bedrock Builder", "latin": "The Bedrock Builder" },
+    "air": { "name": "The Gale Thinker", "latin": "The Gale Thinker" },
+    "water": { "name": "The Tide Weaver", "latin": "The Tide Weaver" }
+  },
+  "dims": { "fire": "Fire", "earth": "Earth", "air": "Air", "water": "Water", "expr": "Outward", "order": "Order" },
+  "dimsFull": { "fire": "Fire · drive", "earth": "Earth · ground", "air": "Air · thought", "water": "Water · feeling", "expr": "Outward", "order": "Order" },
+  "keywords": {
+    "fire": ["Driven", "Ardent", "Restless"],
+    "earth": ["Steady", "Ordered", "Patient"],
+    "air": ["Curious", "Nimble", "Inventive"],
+    "water": ["Empathic", "Intuitive", "Deep"],
+    "expr": ["Expressive", "Vocal", "Present"],
+    "order": ["Methodical", "Measured", "Structured"]
+  },
+  "mutationLabel": { "0": "True to sign", "1": "Minor Drift", "2": "Marked Drift", "3": "Radical Drift" },
+  "mutation": {
+    "0": "Your personality sits close to the {sign} baseline—your sign called it right.",
+    "1": "A hairline crack from the {sign} baseline: {dims} no longer quite follow the script.",
+    "2": "You've outgrown the script your sign handed you—every bit of it earned on the way here.",
+    "3": "You've all but rewritten {sign}: your personality is defined not by your sign, but by the road you've walked."
+  },
+  "relation": {
+    "same": "same-element resonance",
+    "sextile": "complementary spark",
+    "square": "a charged friction",
+    "opposition": "opposites attract",
+    "neutral": "parallel paths"
+  },
+  "connectors": {
+    "similar": "aligned on {dims}",
+    "complement": "balanced on {dims}",
+    "and": " & ",
+    "idealHigh": ", and a close match to your ideal",
+    "idealMid": ", a fair match to your ideal",
+    "listSep": "; "
+  },
+  "personality": "{archetype}: led by {dominant}, with {missing} kept quiet—read from the scores, not from platitudes.",
+  "matchSummary": "With your real personality laid bare, these are the ones who can hold it."
+}

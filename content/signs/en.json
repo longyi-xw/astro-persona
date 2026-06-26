@@ -1,0 +1,122 @@
+{
+  "aries": {
+    "name": "Aries",
+    "keyword": "Headstrong",
+    "sketch": [
+      "Aries perfects the art of beginning. A thought sparks and they're already moving—that unthinking courage is both their gift and their burden.",
+      "Honest to a fault and allergic to detours; the flip side is just as plain: thin patience, quick to change course halfway."
+    ],
+    "love": "Makes the first move, runs hot then cool. Needs someone who can catch the rush and still slow them down.",
+    "work": "A born starter, built for zero-to-one. Hand the finish line to someone steadier and they'll go further."
+  },
+  "taurus": {
+    "name": "Taurus",
+    "keyword": "Grounded",
+    "sketch": [
+      "Taurus trusts what can be seen and touched. They're slow, but slow with direction—and nearly immovable once set.",
+      "Dependable to the core, stubborn and comfort-loving on the other side. Change is never an easy thing for them."
+    ],
+    "love": "Shows love through steadiness and presence, not sweet talk. Give them safety and their loyalty runs deep.",
+    "work": "Builds things to last, endures repetition and the long game. Best where quality compounds over time."
+  },
+  "gemini": {
+    "name": "Gemini",
+    "keyword": "Quicksilver",
+    "sketch": [
+      "Gemini keeps several windows open at once. They meet the world with a child's curiosity, switching topics and tastes at speed.",
+      "Sharp, quick, articulate—but easily three-minutes-hot, with breadth often winning out over depth."
+    ],
+    "love": "Warms up through talk and novelty; boredom is the real enemy. Needs a mind to spar with and room to roam.",
+    "work": "Thrives in information, communication and ideas. Brightest juggling many threads; monotony drains them."
+  },
+  "cancer": {
+    "name": "Cancer",
+    "keyword": "Tender",
+    "sketch": [
+      "Cancer speaks in feeling first. They remember the preference you mentioned in passing and hold home and their people above all.",
+      "Sensitivity is their radar and their soft spot—moods run high, and a wound can send them into the shell for a long while."
+    ],
+    "love": "Devoted and in it for the long haul, longing to be needed. Offer commitment and they'll guard you with everything.",
+    "work": "Most at ease in a small, trusted team. Gifted at caring for people and keeping the bonds intact."
+  },
+  "leo": {
+    "name": "Leo",
+    "keyword": "Radiant",
+    "sketch": [
+      "Leo walks in and the light follows. Generous and warm, they were born needing a stage and an answering gaze.",
+      "Confidence is the charm and the load—being overlooked stings deeper than they let on."
+    ],
+    "love": "Loud and loyal, loves on a grand scale. Needs admiration and respect, and can't abide indifference.",
+    "work": "A natural leader and performer, built for roles that need presence. Give them the spotlight and they give their all."
+  },
+  "virgo": {
+    "name": "Virgo",
+    "keyword": "Precise",
+    "sketch": [
+      "Virgo sees the detail everyone else misses. They answer chaos with discernment and treat 'do it better' as instinct.",
+      "Reliable, meticulous, willing—but prone to self-reproach. Letting themselves off the hook is the lifelong lesson."
+    ],
+    "love": "Loves through acts and care, understated and solid. Wants the effort seen, not the fault-finding felt.",
+    "work": "Untangles complexity and guards the quality. Built for roles that demand precision and responsibility."
+  },
+  "libra": {
+    "name": "Libra",
+    "keyword": "Poised",
+    "sketch": [
+      "Libra is wired for balance and beauty. They care about fairness in a relationship and put everyone at ease.",
+      "Elegant and diplomatic, yet often undecided because 'both sides have a point'—people-pleasing and hesitation are one coin."
+    ],
+    "love": "Romantic and relationship-first, afraid of being alone. Needs a partner to decide and share the weight with.",
+    "work": "Skilled at coordination, negotiation and taste. At home in roles that balance many parties."
+  },
+  "scorpio": {
+    "name": "Scorpio",
+    "keyword": "Intense",
+    "sketch": [
+      "Scorpio lives below the surface. Feelings run thick and will runs deep—once in, it's all in: never love or love completely.",
+      "Fiercely perceptive and fiercely private; suspicion and obsession are the undercurrents they must learn to tame."
+    ],
+    "love": "Profound and singular, asking for a soul-level handover. Betrayal is the one unforgivable thing.",
+    "work": "Built to dig in and crack the hard problems—the tougher, the better. Made for focus and depth."
+  },
+  "sagittarius": {
+    "name": "Sagittarius",
+    "keyword": "Seeker",
+    "sketch": [
+      "Sagittarius forever faces the horizon. They want freedom, meaning and the view they haven't seen yet—optimistic to the point of naivety.",
+      "Frank and adventurous, yet quick to promise more than they deliver. Rein the stride in and the distance gets closer."
+    ],
+    "love": "Loves freedom, dreads the leash. Needs someone to hit the road with, not someone to tie them down.",
+    "work": "Built for exploration, crossover and vision. Repetition and constraint make them bolt."
+  },
+  "capricorn": {
+    "name": "Capricorn",
+    "keyword": "Enduring",
+    "sketch": [
+      "Capricorn makes time an ally. Clear-eyed and disciplined to the edge of cold, they believe the mountain is climbed one step at a time.",
+      "Dependable and load-bearing, yet apt to carry duty into loneliness—remember, there's a view before the summit too."
+    ],
+    "love": "Reserved and lasting, trading sweet words for shouldering things. Slow to warm, rock-solid once sure.",
+    "work": "A born long-term builder who outlasts the quiet stretches. Made for roles that need persistence and duty."
+  },
+  "aquarius": {
+    "name": "Aquarius",
+    "keyword": "Maverick",
+    "sketch": [
+      "Aquarius feels posted in from the future. Independent and rational, they love breaking the mold—caring about humankind from a slight distance.",
+      "Forward and principled, yet apt to seem aloof. Warmth is their required course with the world."
+    ],
+    "love": "Values a meeting of minds over dependence, and needs room. Loves someone who's a friend and respects independence.",
+    "work": "Suited to innovation, tech and social questions. Most creative where they're free to range."
+  },
+  "pisces": {
+    "name": "Pisces",
+    "keyword": "Dreaming",
+    "sketch": [
+      "Pisces lives in the tides of feeling and imagination. Deeply empathic, gentle and artistic—though the edges often blur.",
+      "Kind and accepting, but prone to escape and self-dissolving. Learning to come ashore keeps the dream from drowning them."
+    ],
+    "love": "Romantic and selfless, longing for souls to merge. Needs someone gentle yet clear who can offer direction.",
+    "work": "Suited to creative, healing and expressive work. Shines brightest when understood and supported."
+  }
+}

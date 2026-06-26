@@ -1,0 +1,17 @@
+{
+  "_comment": "Language-neutral SignProfile data. Display text in zh.json/en.json by id. baseline = 共识基线向量 (design/02 §4). aries baseline matches the prototype fixture.",
+  "signs": [
+    { "id": "aries", "element": "fire", "modality": "cardinal", "ruler": "mars", "glyph": "♈", "dates": { "from": "03.21", "to": "04.19" }, "baseline": { "fire": 0.80, "earth": 0.46, "air": 0.54, "water": 0.36, "expr": 0.66, "order": 0.52 } },
+    { "id": "taurus", "element": "earth", "modality": "fixed", "ruler": "venus", "glyph": "♉", "dates": { "from": "04.20", "to": "05.20" }, "baseline": { "fire": 0.40, "earth": 0.82, "air": 0.38, "water": 0.50, "expr": 0.42, "order": 0.74 } },
+    { "id": "gemini", "element": "air", "modality": "mutable", "ruler": "mercury", "glyph": "♊", "dates": { "from": "05.21", "to": "06.20" }, "baseline": { "fire": 0.52, "earth": 0.36, "air": 0.84, "water": 0.38, "expr": 0.76, "order": 0.34 } },
+    { "id": "cancer", "element": "water", "modality": "cardinal", "ruler": "moon", "glyph": "♋", "dates": { "from": "06.21", "to": "07.22" }, "baseline": { "fire": 0.42, "earth": 0.52, "air": 0.40, "water": 0.82, "expr": 0.44, "order": 0.56 } },
+    { "id": "leo", "element": "fire", "modality": "fixed", "ruler": "sun", "glyph": "♌", "dates": { "from": "07.23", "to": "08.22" }, "baseline": { "fire": 0.82, "earth": 0.48, "air": 0.55, "water": 0.42, "expr": 0.80, "order": 0.58 } },
+    { "id": "virgo", "element": "earth", "modality": "mutable", "ruler": "mercury", "glyph": "♍", "dates": { "from": "08.23", "to": "09.22" }, "baseline": { "fire": 0.38, "earth": 0.78, "air": 0.58, "water": 0.46, "expr": 0.40, "order": 0.80 } },
+    { "id": "libra", "element": "air", "modality": "cardinal", "ruler": "venus", "glyph": "♎", "dates": { "from": "09.23", "to": "10.22" }, "baseline": { "fire": 0.46, "earth": 0.48, "air": 0.78, "water": 0.54, "expr": 0.64, "order": 0.56 } },
+    { "id": "scorpio", "element": "water", "modality": "fixed", "ruler": "pluto", "glyph": "♏", "dates": { "from": "10.23", "to": "11.21" }, "baseline": { "fire": 0.58, "earth": 0.50, "air": 0.46, "water": 0.84, "expr": 0.38, "order": 0.66 } },
+    { "id": "sagittarius", "element": "fire", "modality": "mutable", "ruler": "jupiter", "glyph": "♐", "dates": { "from": "11.22", "to": "12.21" }, "baseline": { "fire": 0.78, "earth": 0.38, "air": 0.66, "water": 0.40, "expr": 0.74, "order": 0.30 } },
+    { "id": "capricorn", "element": "earth", "modality": "cardinal", "ruler": "saturn", "glyph": "♑", "dates": { "from": "12.22", "to": "01.19" }, "baseline": { "fire": 0.40, "earth": 0.84, "air": 0.42, "water": 0.44, "expr": 0.34, "order": 0.82 } },
+    { "id": "aquarius", "element": "air", "modality": "fixed", "ruler": "uranus", "glyph": "♒", "dates": { "from": "01.20", "to": "02.18" }, "baseline": { "fire": 0.50, "earth": 0.44, "air": 0.82, "water": 0.40, "expr": 0.60, "order": 0.46 } },
+    { "id": "pisces", "element": "water", "modality": "mutable", "ruler": "neptune", "glyph": "♓", "dates": { "from": "02.19", "to": "03.20" }, "baseline": { "fire": 0.32, "earth": 0.40, "air": 0.46, "water": 0.86, "expr": 0.36, "order": 0.44 } }
+  ]
+}

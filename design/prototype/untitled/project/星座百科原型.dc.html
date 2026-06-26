@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Noto+Serif+SC:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+Symbols+2&display=swap" rel="stylesheet">
+</helmet>
+
+<!-- ============ 01 · LANDING ============ -->
+<div style="position:absolute; left:0px; top:0px; width:1200px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#8b95c4; text-transform:uppercase">01 — 首页 · Landing</div>
+  <div style="position:relative; background-color:#0E1530; background-image:radial-gradient(1.3px 1.3px at 12% 22%,rgba(244,239,230,.35),transparent),radial-gradient(1px 1px at 80% 30%,rgba(244,239,230,.20),transparent),radial-gradient(1.5px 1.5px at 62% 72%,rgba(201,162,75,.28),transparent),radial-gradient(1px 1px at 30% 66%,rgba(159,193,212,.20),transparent); border:1px solid rgba(201,162,75,.18); border-radius:24px; box-shadow:0 40px 90px rgba(0,0,0,.5); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:22px 36px; border-bottom:1px solid rgba(201,162,75,.12)">
+      <div style="display:flex; align-items:baseline; gap:12px">
+        <span style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:23px; letter-spacing:.02em; color:#C9A24B">Astro&nbsp;Persona</span>
+        <span style="font-family:'Noto Serif SC',serif; font-size:15px; color:#cdbf9e">星座百科</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:26px; font-size:13px; color:#9aa3cc">
+        <span>星座百科 · Signs</span><span>性格测试 · Test</span><span>情感匹配 · Match</span>
+        <div style="display:flex; align-items:center; gap:5px; font-family:'IBM Plex Mono',monospace; font-size:12px">
+          <span style="padding:4px 9px; border-radius:999px; background:#C9A24B; color:#0E1530; font-weight:600">中</span>
+          <span style="padding:4px 9px; border-radius:999px; color:#8b95c4">EN</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1.12fr .88fr; gap:24px; align-items:center; padding:60px 36px 50px 56px">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.22em; color:#C9A24B; text-transform:uppercase; margin-bottom:22px">人格诊断 · not horoscope</div>
+        <h1 style="margin:0; font-family:'Noto Serif SC',serif; font-weight:600; font-size:58px; line-height:1.12; letter-spacing:.01em">星座是起点，<br>不是终点。</h1>
+        <p style="margin:18px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500; font-size:28px; line-height:1.28; color:#d7ccae">Your sign is a starting point,<br>not a verdict.</p>
+        <p style="margin:26px 0 0; max-width:440px; font-size:16px; line-height:1.7; color:#aab2d6">测一测你被星座框住了多少。<br><span style="color:#7e88b4">Find out how far you've drifted from it.</span></p>
+        <div style="display:flex; gap:14px; margin-top:38px; flex-wrap:wrap">
+          <button style="border:none; cursor:pointer; background:#C9A24B; color:#0E1530; font-family:'Inter','Noto Sans SC',sans-serif; font-weight:600; font-size:15px; padding:15px 26px; border-radius:999px">开始性格测试 · Take the test</button>
+          <button style="cursor:pointer; background:transparent; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif; font-weight:500; font-size:15px; padding:15px 26px; border-radius:999px; border:1px solid rgba(201,162,75,.5)">浏览十二星座 · Explore the 12 signs</button>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; align-items:center">
+        <div style="width:360px; height:360px; filter:drop-shadow(0 0 42px rgba(201,162,75,.25))">
+          <dc-import name="EnergyCompass" vector="{{ heroVector }}" size="360" accent="#C9A24B" hint-size="360px,360px" style="display:block; width:360px; height:360px"></dc-import>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; padding:0 56px">
+      <div style="padding:18px; background:rgba(27,36,82,.55); border:1px solid rgba(226,104,60,.28); border-radius:16px">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#E2683C; letter-spacing:.12em">火 · FIRE</div>
+        <div style="font-family:'Noto Serif SC',serif; font-size:17px; margin-top:10px">主动出击的人</div>
+        <div style="font-size:12px; color:#9aa3cc; margin-top:6px; line-height:1.5">Acts first, asks later.<br>白羊 · 狮子 · 射手</div>
+      </div>
+      <div style="padding:18px; background:rgba(27,36,82,.55); border:1px solid rgba(138,154,91,.30); border-radius:16px">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#8A9A5B; letter-spacing:.12em">土 · EARTH</div>
+        <div style="font-family:'Noto Serif SC',serif; font-size:17px; margin-top:10px">把事做成的人</div>
+        <div style="font-size:12px; color:#9aa3cc; margin-top:6px; line-height:1.5">Builds to last.<br>金牛 · 处女 · 摩羯</div>
+      </div>
+      <div style="padding:18px; background:rgba(27,36,82,.55); border:1px solid rgba(159,193,212,.30); border-radius:16px">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#9FC1D4; letter-spacing:.12em">风 · AIR</div>
+        <div style="font-family:'Noto Serif SC',serif; font-size:17px; margin-top:10px">想个不停的人</div>
+        <div style="font-size:12px; color:#9aa3cc; margin-top:6px; line-height:1.5">Thinks out loud.<br>双子 · 天秤 · 水瓶</div>
+      </div>
+      <div style="padding:18px; background:rgba(27,36,82,.55); border:1px solid rgba(46,124,138,.34); border-radius:16px">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#2E7C8A; letter-spacing:.12em">水 · WATER</div>
+        <div style="font-family:'Noto Serif SC',serif; font-size:17px; margin-top:10px">先感受的人</div>
+        <div style="font-size:12px; color:#9aa3cc; margin-top:6px; line-height:1.5">Feels it first.<br>巨蟹 · 天蝎 · 双鱼</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:26px; margin:34px 56px 0; padding:22px 26px; background:rgba(27,36,82,.6); border:1px solid rgba(201,162,75,.16); border-radius:18px">
+      <div style="width:92px; height:92px; flex:none">
+        <dc-import name="EnergyCompass" vector="{{ teaserVector }}" baseline="{{ heroVector }}" size="92" accent="#E2683C" hint-size="92px,92px" style="display:block;width:92px;height:92px"></dc-import>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; color:#C9A24B; text-transform:uppercase">异变 · The Drift</div>
+        <div style="font-family:'Noto Serif SC',serif; font-size:19px; margin-top:8px">你，可能并不典型。</div>
+        <div style="font-size:13px; color:#9aa3cc; margin-top:6px; line-height:1.6; max-width:600px">当实测人格偏离星座基线足够远，我们称之为"异变"——抛开剧本，用你真实的主导维度重新描述你。 <span style="color:#7e88b4">When you drift far enough from your sign's baseline, we describe you by who you actually are.</span></div>
+      </div>
+    </div>
+    <div style="padding:24px 56px 28px; font-size:12px; color:#6b76a8; border-top:1px solid rgba(201,162,75,.1); margin-top:32px">娱乐与自我探索用途，非科学结论 · For entertainment and self-reflection, not scientific advice.</div>
+  </div>
+</div>
+
+<!-- ============ 02 · ENCYCLOPEDIA LIST ============ -->
+<div style="position:absolute; left:0px; top:980px; width:440px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#8b95c4; text-transform:uppercase">02 — 星座百科 · The 12 Signs</div>
+  <div style="background:#0E1530; border:1px solid rgba(201,162,75,.18); border-radius:24px; box-shadow:0 40px 90px rgba(0,0,0,.5); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid rgba(201,162,75,.12)">
+      <span style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:18px; color:#C9A24B">Astro Persona</span>
+      <div style="display:flex; align-items:center; gap:5px; font-family:'IBM Plex Mono',monospace; font-size:11px">
+        <span style="padding:3px 8px; border-radius:999px; background:#C9A24B; color:#0E1530; font-weight:600">中</span>
+        <span style="padding:3px 8px; border-radius:999px; color:#8b95c4">EN</span>
+      </div>
+    </div>
+    <div style="padding:28px 24px 8px">
+      <h2 style="margin:0; font-family:'Noto Serif SC',serif; font-weight:600; font-size:30px; line-height:1.2">十二星座</h2>
+      <p style="margin:6px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:20px; color:#cdbf9e">The Twelve Signs</p>
+      <p style="margin:16px 0 0; font-size:13.5px; line-height:1.65; color:#9aa3cc">十二种面对世界的姿态，先于性格、先于选择。按四象阅读，而不是按生日对号入座。 <span style="color:#7e88b4">Twelve postures toward the world—read by element, not by birthday.</span></p>
+    </div>
+    <div style="padding:8px 24px 26px">
+      <sc-for list="{{ signGroups }}" as="group" hint-placeholder-count="4">
+        <div style="display:flex; align-items:center; gap:10px; margin:22px 0 12px">
+          <span style="width:7px; height:7px; border-radius:50%; background:{{ group.color }}"></span>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; color:{{ group.color }}">{{ group.label }}</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px">
+          <sc-for list="{{ group.signs }}" as="sign" hint-placeholder-count="3">
+            <div style="display:flex; align-items:center; gap:14px; padding:12px 14px; background:rgba(27,36,82,.5); border:1px solid rgba(255,255,255,.04); border-left:2px solid {{ group.color }}; border-radius:12px">
+              <span style="font-family:'Noto Sans Symbols 2',serif; font-variant-emoji:text; font-size:23px; color:{{ group.color }}; width:28px; text-align:center">{{ sign.glyph }}</span>
+              <div style="flex:1">
+                <div style="display:flex; align-items:baseline; gap:8px">
+                  <span style="font-family:'Noto Serif SC',serif; font-size:16px">{{ sign.zh }}</span>
+                  <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:#9aa3cc">{{ sign.en }}</span>
+                </div>
+                <div style="font-size:11.5px; color:#8089b0; margin-top:3px">{{ sign.kw }}</div>
+              </div>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#6b76a8">{{ sign.dates }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:18px 24px 22px; font-size:11px; color:#6b76a8; border-top:1px solid rgba(201,162,75,.1)">描述聚合自多家热门占星来源，仅供娱乐 · Aggregated for fun, not science.</div>
+  </div>
+</div>
+
+<!-- ============ 03 · SIGN DETAIL (ARIES) ============ -->
+<div style="position:absolute; left:520px; top:980px; width:460px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#8b95c4; text-transform:uppercase">03 — 星座详情 · Sign Detail</div>
+  <div style="background:#0E1530; border:1px solid rgba(201,162,75,.18); border-radius:24px; box-shadow:0 40px 90px rgba(0,0,0,.5); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif">
+    <div style="position:relative; padding:34px 28px 28px; background:linear-gradient(160deg,rgba(226,104,60,.16),rgba(14,21,48,0) 60%); border-bottom:1px solid rgba(201,162,75,.12)">
+      <div style="display:flex; align-items:flex-start; justify-content:space-between">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.18em; color:#E2683C; text-transform:uppercase">火象 · 启动 · Fire / Cardinal</div>
+          <h2 style="margin:14px 0 0; font-family:'Noto Serif SC',serif; font-weight:600; font-size:40px; line-height:1.05">白羊座</h2>
+          <p style="margin:4px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:26px; color:#d7ccae">Aries</p>
+        </div>
+        <span style="font-family:'Noto Sans Symbols 2',serif; font-variant-emoji:text; font-size:62px; line-height:1; color:#E2683C; filter:drop-shadow(0 0 18px rgba(226,104,60,.4))">♈&#xFE0E;</span>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; margin-top:24px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#9aa3cc">
+        <div style="display:flex; justify-content:space-between; border-bottom:1px dotted rgba(255,255,255,.12); padding-bottom:6px"><span style="color:#6b76a8">日期 Dates</span><span>03.21–04.19</span></div>
+        <div style="display:flex; justify-content:space-between; border-bottom:1px dotted rgba(255,255,255,.12); padding-bottom:6px"><span style="color:#6b76a8">守护 Ruler</span><span>火星 Mars</span></div>
+        <div style="display:flex; justify-content:space-between; border-bottom:1px dotted rgba(255,255,255,.12); padding-bottom:6px"><span style="color:#6b76a8">元素 Element</span><span style="color:#E2683C">火 Fire</span></div>
+        <div style="display:flex; justify-content:space-between; border-bottom:1px dotted rgba(255,255,255,.12); padding-bottom:6px"><span style="color:#6b76a8">三态 Mode</span><span>启动 Cardinal</span></div>
+      </div>
+    </div>
+    <div style="padding:26px 28px 8px">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; color:#C9A24B; text-transform:uppercase">性格速写 · The Sketch</div>
+      <p style="margin:12px 0 0; font-size:14.5px; line-height:1.8; color:#cfd4ea">白羊把"开始"做到了极致。一个念头冒出来，他们已经在路上——这份不假思索的勇气是天赋，也是负担。</p>
+      <p style="margin:12px 0 0; font-size:14.5px; line-height:1.8; color:#cfd4ea">他们诚实到近乎莽撞，讨厌迂回；缺点同样明显：耐心稀薄、容易半途转向。<span style="color:#8089b0">Honest to a fault, allergic to detours—and quick to lose patience.</span></p>
+    </div>
+    <div style="margin:22px 28px; padding:22px; background:rgba(27,36,82,.5); border:1px solid rgba(201,162,75,.14); border-radius:18px">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; color:#C9A24B">共识基线罗盘 · Baseline</span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#6b76a8">典型白羊画像</span>
+      </div>
+      <div style="display:flex; justify-content:center; padding:6px 0">
+        <div style="width:230px; height:230px"><dc-import name="EnergyCompass" vector="{{ ariesBaseline }}" size="230" accent="#E2683C" showLabels="true" hint-size="230px,230px" style="display:block;width:230px;height:230px"></dc-import></div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:0 28px">
+      <div>
+        <div style="font-family:'Noto Serif SC',serif; font-size:15px; color:#F4EFE6">爱情 · Love</div>
+        <p style="margin:8px 0 0; font-size:12.5px; line-height:1.7; color:#9aa3cc">主动表白、热得快也凉得快。需要一个接得住冲劲、又能让他们慢下来的人。</p>
+      </div>
+      <div>
+        <div style="font-family:'Noto Serif SC',serif; font-size:15px; color:#F4EFE6">事业 · Work</div>
+        <p style="margin:8px 0 0; font-size:12.5px; line-height:1.7; color:#9aa3cc">天生的开局者，适合从 0 到 1。把收尾交给更稳的人，会走得更远。</p>
+      </div>
+    </div>
+    <div style="padding:24px 28px 6px">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; color:#C9A24B; text-transform:uppercase; margin-bottom:12px">相性速览 · Compatibility</div>
+      <div style="display:flex; gap:8px">
+        <div style="flex:1; padding:12px; background:rgba(46,124,138,.14); border:1px solid rgba(159,193,212,.3); border-radius:12px; text-align:center"><div style="font-size:12px; color:#9FC1D4">高 · High</div><div style="font-size:12.5px; margin-top:6px; color:#cfd4ea">狮子 射手 双子</div></div>
+        <div style="flex:1; padding:12px; background:rgba(201,162,75,.1); border:1px solid rgba(201,162,75,.28); border-radius:12px; text-align:center"><div style="font-size:12px; color:#C9A24B">中 · Mid</div><div style="font-size:12.5px; margin-top:6px; color:#cfd4ea">水瓶 天秤</div></div>
+        <div style="flex:1; padding:12px; background:rgba(226,104,60,.12); border:1px solid rgba(226,104,60,.3); border-radius:12px; text-align:center"><div style="font-size:12px; color:#E2683C">低 · Low</div><div style="font-size:12.5px; margin-top:6px; color:#cfd4ea">巨蟹 摩羯</div></div>
+      </div>
+    </div>
+    <div style="margin:24px 28px 0; padding:20px 22px; background:linear-gradient(120deg,rgba(201,162,75,.16),rgba(201,162,75,.04)); border:1px solid rgba(201,162,75,.3); border-radius:16px; display:flex; align-items:center; justify-content:space-between; gap:14px">
+      <div>
+        <div style="font-family:'Noto Serif SC',serif; font-size:16px">测一测我是不是典型的白羊</div>
+        <div style="font-size:12px; color:#9aa3cc; margin-top:4px">Am I a typical Aries?</div>
+      </div>
+      <button style="border:none; cursor:pointer; background:#C9A24B; color:#0E1530; font-family:'Inter','Noto Sans SC',sans-serif; font-weight:600; font-size:13.5px; padding:12px 18px; border-radius:999px; white-space:nowrap">开始 →</button>
+    </div>
+    <div style="padding:22px 28px; font-size:11px; color:#6b76a8">娱乐用途，非科学结论 · For entertainment, not scientific advice.</div>
+  </div>
+</div>
+
+<!-- ============ 04 · TEST INTRO ============ -->
+<div style="position:absolute; left:1060px; top:980px; width:440px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#8b95c4; text-transform:uppercase">04 — 测试 · 开始前 Setup</div>
+  <div style="background:#0E1530; border:1px solid rgba(201,162,75,.18); border-radius:24px; box-shadow:0 40px 90px rgba(0,0,0,.5); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 26px; border-bottom:1px solid rgba(201,162,75,.12)">
+      <span style="font-size:13px; color:#9aa3cc">← 返回 · Back</span>
+      <div style="display:flex; align-items:center; gap:5px; font-family:'IBM Plex Mono',monospace; font-size:11px">
+        <span style="padding:3px 8px; border-radius:999px; background:#C9A24B; color:#0E1530; font-weight:600">中</span>
+        <span style="padding:3px 8px; border-radius:999px; color:#8b95c4">EN</span>
+      </div>
+    </div>
+    <div style="padding:34px 26px 30px">
+      <h2 style="margin:0; font-family:'Noto Serif SC',serif; font-weight:600; font-size:28px; line-height:1.2">开始之前</h2>
+      <p style="margin:5px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:20px; color:#cdbf9e">Before we begin</p>
+      <div style="margin-top:30px">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; color:#C9A24B; text-transform:uppercase">年龄段 · Age band</div>
+        <div style="font-size:12px; color:#7e88b4; margin-top:6px">我们不会询问你的精确生日。 · We never ask your exact birthday.</div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px">
+          <span style="padding:9px 16px; border-radius:999px; font-size:13px; border:1px solid rgba(255,255,255,.12); color:#9aa3cc">&lt;18</span>
+          <span style="padding:9px 16px; border-radius:999px; font-size:13px; border:1px solid rgba(255,255,255,.12); color:#9aa3cc">18–25</span>
+          <span style="padding:9px 16px; border-radius:999px; font-size:13px; border:1px solid #C9A24B; background:rgba(201,162,75,.16); color:#F4EFE6; font-weight:600">26–35</span>
+          <span style="padding:9px 16px; border-radius:999px; font-size:13px; border:1px solid rgba(255,255,255,.12); color:#9aa3cc">36–45</span>
+          <span style="padding:9px 16px; border-radius:999px; font-size:13px; border:1px solid rgba(255,255,255,.12); color:#9aa3cc">46+</span>
+        </div>
+      </div>
+      <div style="margin-top:30px">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; color:#C9A24B; text-transform:uppercase">题量 · Length</div>
+        <div style="display:flex; gap:10px; margin-top:14px">
+          <div style="flex:1; padding:16px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(27,36,82,.5)">
+            <div style="font-family:'Noto Serif SC',serif; font-size:16px">快测</div>
+            <div style="font-size:12px; color:#9aa3cc; margin-top:4px">约 12 题 · Quick · ~3 min</div>
+          </div>
+          <div style="flex:1; padding:16px; border-radius:14px; border:1px solid #C9A24B; background:rgba(201,162,75,.14)">
+            <div style="font-family:'Noto Serif SC',serif; font-size:16px; color:#F4EFE6">完整</div>
+            <div style="font-size:12px; color:#d7ccae; margin-top:4px">约 20 题 · Full · ~6 min</div>
+          </div>
+        </div>
+      </div>
+      <button style="width:100%; margin-top:32px; border:none; cursor:pointer; background:#C9A24B; color:#0E1530; font-family:'Inter','Noto Sans SC',sans-serif; font-weight:600; font-size:15px; padding:16px; border-radius:999px">开始测试 · Begin the test</button>
+      <p style="margin:18px 0 0; font-size:11px; color:#6b76a8; text-align:center; line-height:1.6">题目为情境化选择，请凭直觉作答。<br>娱乐与自我探索用途，非科学诊断 · Not a clinical assessment.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 05 · TEST QUESTION ============ -->
+<div style="position:absolute; left:1600px; top:980px; width:440px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#8b95c4; text-transform:uppercase">05 — 测试 · 答题 Question</div>
+  <div style="background-color:#0E1530; background-image:radial-gradient(1px 1px at 20% 18%,rgba(244,239,230,.18),transparent),radial-gradient(1px 1px at 75% 40%,rgba(159,193,212,.16),transparent),radial-gradient(1px 1px at 50% 85%,rgba(201,162,75,.18),transparent); border:1px solid rgba(201,162,75,.18); border-radius:24px; box-shadow:0 40px 90px rgba(0,0,0,.5); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif">
+    <div style="padding:22px 26px 0">
+      <div style="display:flex; align-items:center; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#9aa3cc">
+        <span style="color:#6b76a8">← 上一题 · Back</span>
+        <span>第 <span style="color:#C9A24B">07</span> / 20 题</span>
+      </div>
+      <div style="margin-top:14px; height:4px; border-radius:999px; background:rgba(255,255,255,.08); overflow:hidden">
+        <div style="width:35%; height:100%; border-radius:999px; background:linear-gradient(90deg,#C9A24B,#E2683C)"></div>
+      </div>
+    </div>
+    <div style="padding:48px 26px 26px">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; color:#C9A24B; text-transform:uppercase; margin-bottom:18px">情境 · Scenario</div>
+      <h2 style="margin:0; font-family:'Noto Serif SC',serif; font-weight:500; font-size:26px; line-height:1.45">周末突然空了出来，<br>你更想——</h2>
+      <p style="margin:12px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; color:#cdbf9e; line-height:1.4">A free weekend opens up. You'd rather—</p>
+      <div style="display:flex; flex-direction:column; gap:12px; margin-top:34px">
+        <div style="padding:20px; border-radius:16px; border:1px solid #C9A24B; background:rgba(201,162,75,.12); display:flex; align-items:center; gap:16px">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:15px; color:#0E1530; background:#C9A24B; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:600; flex:none">A</span>
+          <div>
+            <div style="font-size:15px; line-height:1.5">临时起意，出门冒险</div>
+            <div style="font-size:12px; color:#9aa3cc; margin-top:3px">Go somewhere on a whim</div>
+          </div>
+        </div>
+        <div style="padding:20px; border-radius:16px; border:1px solid rgba(255,255,255,.1); background:rgba(27,36,82,.5); display:flex; align-items:center; gap:16px">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:15px; color:#9aa3cc; border:1px solid rgba(255,255,255,.2); width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none">B</span>
+          <div>
+            <div style="font-size:15px; line-height:1.5">在家，把计划中的事做完</div>
+            <div style="font-size:12px; color:#9aa3cc; margin-top:3px">Finish what you'd planned at home</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:0 26px 26px; font-size:11px; color:#6b76a8; text-align:center">凭第一反应作答，没有标准答案 · Trust your first instinct.</div>
+  </div>
+</div>
+
+<!-- ============ 06 · GENERATING ============ -->
+<div style="position:absolute; left:2140px; top:980px; width:440px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#8b95c4; text-transform:uppercase">06 — 生成中 · Reading</div>
+  <div style="background-color:#0E1530; background-image:radial-gradient(1.4px 1.4px at 30% 25%,rgba(201,162,75,.3),transparent),radial-gradient(1px 1px at 70% 60%,rgba(244,239,230,.2),transparent),radial-gradient(1px 1px at 45% 80%,rgba(159,193,212,.2),transparent); border:1px solid rgba(201,162,75,.18); border-radius:24px; box-shadow:0 40px 90px rgba(0,0,0,.5); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif; min-height:640px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 26px">
+    <div style="width:260px; height:260px; filter:drop-shadow(0 0 36px rgba(201,162,75,.3)); opacity:.95">
+      <dc-import name="EnergyCompass" vector="{{ userVector }}" size="260" accent="#C9A24B" hint-size="260px,260px" style="display:block;width:260px;height:260px"></dc-import>
+    </div>
+    <h2 style="margin:40px 0 0; font-family:'Noto Serif SC',serif; font-weight:500; font-size:24px; text-align:center; line-height:1.4">正在生成你的能量画像</h2>
+    <p style="margin:10px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:20px; color:#cdbf9e">Reading your chart…</p>
+    <div style="margin-top:24px; display:flex; gap:6px">
+      <span style="width:7px; height:7px; border-radius:50%; background:#C9A24B"></span>
+      <span style="width:7px; height:7px; border-radius:50%; background:rgba(201,162,75,.45)"></span>
+      <span style="width:7px; height:7px; border-radius:50%; background:rgba(201,162,75,.25)"></span>
+    </div>
+    <p style="margin:30px 0 0; font-size:11.5px; color:#6b76a8; text-align:center; line-height:1.7; max-width:300px">把 20 道作答折叠进六个维度，再与你的星座基线比对。<br>Folding your answers into six dimensions.</p>
+  </div>
+</div>
+<!-- ============ 07 · RESULT (HIGHLIGHT) ============ -->
+<div style="position:absolute; left:1060px; top:2280px; width:470px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#C9A24B; text-transform:uppercase">07 — 测试结果 · Result ★</div>
+  <div style="background-color:#0E1530; background-image:radial-gradient(1.4px 1.4px at 16% 12%,rgba(244,239,230,.32),transparent),radial-gradient(1px 1px at 82% 20%,rgba(201,162,75,.28),transparent),radial-gradient(1.2px 1.2px at 60% 9%,rgba(226,104,60,.3),transparent); border:1px solid rgba(201,162,75,.28); border-radius:24px; box-shadow:0 50px 110px rgba(0,0,0,.6); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 26px; border-bottom:1px solid rgba(201,162,75,.12)">
+      <span style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:16px; color:#C9A24B">Astro Persona</span>
+      <div style="display:flex; align-items:center; gap:5px; font-family:'IBM Plex Mono',monospace; font-size:11px">
+        <span style="padding:3px 8px; border-radius:999px; background:#C9A24B; color:#0E1530; font-weight:600">中</span>
+        <span style="padding:3px 8px; border-radius:999px; color:#8b95c4">EN</span>
+      </div>
+    </div>
+    <div style="padding:34px 26px 10px; text-align:center">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:#9aa3cc; text-transform:uppercase">你的能量画像 · Your chart</div>
+      <div style="display:flex; justify-content:center; margin:18px 0 6px; filter:drop-shadow(0 0 40px rgba(201,162,75,.28))">
+        <div style="width:330px; height:330px"><dc-import name="EnergyCompass" vector="{{ userVector }}" baseline="{{ ariesBaseline }}" size="330" accent="#C9A24B" showLabels="true" hint-size="330px,330px" style="display:block;width:330px;height:330px"></dc-import></div>
+      </div>
+      <h2 style="margin:14px 0 0; font-family:'Noto Serif SC',serif; font-weight:600; font-size:38px; line-height:1.1">炽焰先锋</h2>
+      <p style="margin:4px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; color:#d7ccae">The Ember Vanguard</p>
+      <div style="display:inline-flex; align-items:center; gap:8px; margin-top:16px; padding:7px 16px; border-radius:999px; background:rgba(226,104,60,.16); border:1px solid rgba(226,104,60,.5)">
+        <span style="width:7px; height:7px; border-radius:50%; background:#E2683C"></span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.08em; color:#F0B59A">异变 · 显异 · Marked Drift</span>
+      </div>
+    </div>
+    <div style="margin:28px 26px 0; padding:22px; background:rgba(27,36,82,.5); border:1px solid rgba(201,162,75,.14); border-radius:18px">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; color:#C9A24B">六维得分 · Six dimensions</span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#6b76a8">/ 100</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:13px">
+        <sc-for list="{{ scores }}" as="s" hint-placeholder-count="6">
+          <div style="display:flex; align-items:center; gap:12px">
+            <span style="font-family:'Noto Serif SC',serif; font-size:14px; width:18px; color:{{ s.color }}">{{ s.zh }}</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#7e88b4; width:42px">{{ s.en }}</span>
+            <div style="flex:1; height:7px; border-radius:999px; background:rgba(255,255,255,.07); overflow:hidden">
+              <div style="height:100%; border-radius:999px; width:{{ s.val }}%; background:{{ s.color }}"></div>
+            </div>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:600; width:30px; text-align:right; color:#F4EFE6">{{ s.val }}</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; width:58px; color:#8089b0; text-align:right">{{ s.role }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:16px; padding-top:14px; border-top:1px dotted rgba(255,255,255,.12); font-size:12px; color:#9aa3cc; line-height:1.6">主导 <span style="color:#E2683C">火</span> 与 <span style="color:#C9A24B">外显</span>，<span style="color:#2E7C8A">水</span> 维明显缺位——结论有据，而非泛泛而谈。</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; padding:22px 26px 0">
+      <span style="padding:7px 14px; border-radius:999px; font-size:12.5px; background:rgba(226,104,60,.14); border:1px solid rgba(226,104,60,.4); color:#F0B59A">主动</span>
+      <span style="padding:7px 14px; border-radius:999px; font-size:12.5px; background:rgba(201,162,75,.12); border:1px solid rgba(201,162,75,.4); color:#E2CB8C">热望</span>
+      <span style="padding:7px 14px; border-radius:999px; font-size:12.5px; background:rgba(159,193,212,.12); border:1px solid rgba(159,193,212,.4); color:#BBD4E2">不安分</span>
+      <span style="padding:7px 14px; border-radius:999px; font-size:12.5px; background:rgba(226,104,60,.14); border:1px solid rgba(226,104,60,.4); color:#F0B59A">Restless</span>
+    </div>
+    <div style="margin:22px 26px 0; padding:22px; background:linear-gradient(135deg,rgba(226,104,60,.16),rgba(201,162,75,.06)); border:1px solid rgba(226,104,60,.34); border-radius:18px">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.14em; color:#E2683C; text-transform:uppercase; margin-bottom:10px">与星座的关系 · The drift</div>
+      <p style="margin:0; font-family:'Noto Serif SC',serif; font-size:17px; line-height:1.7">你已经走出了星座给的剧本。这一切，都是你一路经历换来的。</p>
+      <p style="margin:12px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:16px; line-height:1.5; color:#cdbf9e">You've outgrown the script your sign handed you—every bit of it earned on the way here.</p>
+    </div>
+    <div style="display:flex; gap:10px; padding:22px 26px 0">
+      <button style="flex:1; border:none; cursor:pointer; background:#C9A24B; color:#0E1530; font-family:'Inter','Noto Sans SC',sans-serif; font-weight:600; font-size:14px; padding:15px; border-radius:999px">看看谁和你最合 · See who fits</button>
+      <button style="cursor:pointer; background:transparent; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif; font-weight:500; font-size:14px; padding:15px 18px; border-radius:999px; border:1px solid rgba(201,162,75,.5)">保存卡片</button>
+    </div>
+    <div style="padding:22px 26px; font-size:11px; color:#6b76a8; text-align:center">维度借鉴心理学，但不等同任何专业量表 · Inspired by psychology, not a clinical scale.</div>
+  </div>
+</div>
+
+<!-- ============ 08 · MATCH INPUT ============ -->
+<div style="position:absolute; left:1600px; top:2280px; width:440px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#8b95c4; text-transform:uppercase">08 — 情感匹配 · 输入 Input</div>
+  <div style="background:#0E1530; border:1px solid rgba(201,162,75,.18); border-radius:24px; box-shadow:0 40px 90px rgba(0,0,0,.5); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 26px; border-bottom:1px solid rgba(201,162,75,.12)">
+      <span style="font-size:13px; color:#9aa3cc">← 结果 · Result</span>
+      <div style="display:flex; align-items:center; gap:5px; font-family:'IBM Plex Mono',monospace; font-size:11px">
+        <span style="padding:3px 8px; border-radius:999px; background:#C9A24B; color:#0E1530; font-weight:600">中</span>
+        <span style="padding:3px 8px; border-radius:999px; color:#8b95c4">EN</span>
+      </div>
+    </div>
+    <div style="padding:32px 26px 28px">
+      <h2 style="margin:0; font-family:'Noto Serif SC',serif; font-weight:600; font-size:26px; line-height:1.2">谁和你最合？</h2>
+      <p style="margin:5px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; color:#cdbf9e">Who fits you best?</p>
+      <p style="margin:16px 0 0; font-size:13px; line-height:1.7; color:#9aa3cc">匹配 = 传统星座相性 + 你的答题人格 +（可选）理想型。<span style="color:#7e88b4">The more you tell us, the sharper it gets.</span></p>
+      <div style="margin-top:24px; padding:16px 18px; display:flex; align-items:center; justify-content:space-between; background:rgba(27,36,82,.5); border:1px solid rgba(201,162,75,.18); border-radius:14px">
+        <div>
+          <div style="font-size:14px">要不要描述你的理想型？</div>
+          <div style="font-size:11.5px; color:#7e88b4; margin-top:3px">Describe your ideal match? · 几秒即可</div>
+        </div>
+        <div style="width:46px; height:26px; border-radius:999px; background:#C9A24B; position:relative; flex:none">
+          <span style="position:absolute; top:3px; right:3px; width:20px; height:20px; border-radius:50%; background:#0E1530"></span>
+        </div>
+      </div>
+      <div style="margin-top:26px; display:flex; flex-direction:column; gap:24px">
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:12.5px; margin-bottom:10px"><span style="color:#9aa3cc">更安稳</span><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#E2683C">冒险 72%</span><span style="color:#9aa3cc">更冒险</span></div>
+          <div style="height:5px; border-radius:999px; background:rgba(255,255,255,.08); position:relative"><div style="position:absolute; left:0; top:0; height:100%; width:72%; border-radius:999px; background:#E2683C"></div><span style="position:absolute; left:72%; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#F4EFE6; box-shadow:0 0 10px rgba(226,104,60,.6)"></span></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:12.5px; margin-bottom:10px"><span style="color:#9aa3cc">更内敛</span><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#9FC1D4">外放 58%</span><span style="color:#9aa3cc">更外放</span></div>
+          <div style="height:5px; border-radius:999px; background:rgba(255,255,255,.08); position:relative"><div style="position:absolute; left:0; top:0; height:100%; width:58%; border-radius:999px; background:#9FC1D4"></div><span style="position:absolute; left:58%; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#F4EFE6; box-shadow:0 0 10px rgba(159,193,212,.6)"></span></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:12.5px; margin-bottom:10px"><span style="color:#9aa3cc">更理性</span><span style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:#2E7C8A">感性 64%</span><span style="color:#9aa3cc">更感性</span></div>
+          <div style="height:5px; border-radius:999px; background:rgba(255,255,255,.08); position:relative"><div style="position:absolute; left:0; top:0; height:100%; width:64%; border-radius:999px; background:#2E7C8A"></div><span style="position:absolute; left:64%; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; border-radius:50%; background:#F4EFE6; box-shadow:0 0 10px rgba(46,124,138,.6)"></span></div>
+        </div>
+      </div>
+      <button style="width:100%; margin-top:32px; border:none; cursor:pointer; background:#C9A24B; color:#0E1530; font-family:'Inter','Noto Sans SC',sans-serif; font-weight:600; font-size:15px; padding:16px; border-radius:999px">开始匹配 · Find my matches</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 09 · MATCH RESULTS ============ -->
+<div style="position:absolute; left:2140px; top:2280px; width:470px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#8b95c4; text-transform:uppercase">09 — 匹配结果 · Matches</div>
+  <div style="background:#0E1530; border:1px solid rgba(201,162,75,.18); border-radius:24px; box-shadow:0 40px 90px rgba(0,0,0,.5); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif">
+    <div style="padding:30px 26px 18px; text-align:center; border-bottom:1px solid rgba(201,162,75,.1)">
+      <h2 style="margin:0; font-family:'Noto Serif SC',serif; font-weight:600; font-size:24px; line-height:1.35">三个最接得住你的人</h2>
+      <p style="margin:5px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:18px; color:#cdbf9e">Three who can hold your fire</p>
+      <div style="display:flex; justify-content:center; margin-top:14px; filter:drop-shadow(0 0 30px rgba(201,162,75,.22))">
+        <div style="width:200px; height:200px"><dc-import name="EnergyCompass" vector="{{ userVector }}" baseline="{{ matchVector }}" size="200" accent="#C9A24B" hint-size="200px,200px" style="display:block;width:200px;height:200px"></dc-import></div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:18px; margin-top:8px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#9aa3cc">
+        <span><span style="color:#C9A24B">━</span> 你 You</span>
+        <span><span style="color:#9FC1D4">┅</span> 最佳匹配 Best fit</span>
+      </div>
+    </div>
+    <div style="padding:20px 26px 8px; display:flex; flex-direction:column; gap:12px">
+      <sc-for list="{{ matchList }}" as="m" hint-placeholder-count="3">
+        <div style="padding:18px; background:rgba(27,36,82,.5); border:1px solid rgba(255,255,255,.05); border-left:3px solid {{ m.color }}; border-radius:14px">
+          <div style="display:flex; align-items:center; gap:14px">
+            <span style="font-family:'Noto Sans Symbols 2',serif; font-variant-emoji:text; font-size:28px; color:{{ m.color }}; width:34px; text-align:center">{{ m.glyph }}</span>
+            <div style="flex:1">
+              <div style="display:flex; align-items:baseline; gap:8px">
+                <span style="font-family:'Noto Serif SC',serif; font-size:17px">{{ m.zh }}</span>
+                <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:#9aa3cc">{{ m.en }}</span>
+              </div>
+            </div>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; color:#F4EFE6">{{ m.pct }}<span style="font-size:13px; color:#8089b0">%</span></span>
+          </div>
+          <p style="margin:12px 0 0; font-size:12.5px; line-height:1.65; color:#cfd4ea">{{ m.why }}</p>
+          <p style="margin:5px 0 0; font-size:11.5px; line-height:1.5; color:#7e88b4; font-style:italic; font-family:'Cormorant Garamond',serif">{{ m.en2 }}</p>
+          <div style="display:flex; gap:7px; margin-top:12px">
+            <sc-for list="{{ m.tags }}" as="tag" hint-placeholder-count="2">
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; padding:4px 10px; border-radius:999px; color:{{ tag.c }}; border:1px solid {{ tag.c }}">{{ tag.t }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin:14px 26px 0; padding:14px 16px; background:rgba(201,162,75,.08); border:1px solid rgba(201,162,75,.22); border-radius:12px; font-size:12px; color:#cdbf9e; line-height:1.6">你是异变体，已为你弱化星座、强化真实人格来匹配。<span style="color:#8089b0">We weighted your real personality over your sign.</span></div>
+    <div style="display:flex; gap:10px; padding:20px 26px">
+      <button style="flex:1; border:none; cursor:pointer; background:#C9A24B; color:#0E1530; font-family:'Inter','Noto Sans SC',sans-serif; font-weight:600; font-size:14px; padding:14px; border-radius:999px">生成匹配卡分享</button>
+      <button style="cursor:pointer; background:transparent; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif; font-weight:500; font-size:14px; padding:14px 18px; border-radius:999px; border:1px solid rgba(201,162,75,.5)">重新测</button>
+    </div>
+  </div>
+</div>
+<!-- ============ 10 · SHARE CARD — FIRE ============ -->
+<div style="position:absolute; left:0px; top:3860px; width:380px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#C9A24B; text-transform:uppercase">10 — 分享卡 · 火 Fire</div>
+  <div style="position:relative; height:660px; background-color:#0E1530; background-image:radial-gradient(120% 80% at 50% 6%,rgba(226,104,60,.22),transparent 55%),radial-gradient(1.4px 1.4px at 22% 14%,rgba(244,239,230,.4),transparent),radial-gradient(1.2px 1.2px at 78% 22%,rgba(201,162,75,.4),transparent),radial-gradient(1px 1px at 60% 40%,rgba(244,239,230,.25),transparent),radial-gradient(1px 1px at 36% 60%,rgba(226,104,60,.3),transparent); border:1px solid rgba(226,104,60,.35); border-radius:26px; box-shadow:0 50px 110px rgba(0,0,0,.6); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif; display:flex; flex-direction:column; align-items:center; padding:30px 30px 26px">
+    <div style="display:flex; align-items:center; justify-content:space-between; width:100%">
+      <span style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:14px; letter-spacing:.04em; color:#C9A24B">Astro Persona</span>
+      <span style="font-family:'Noto Sans Symbols 2',serif; font-variant-emoji:text; font-size:30px; line-height:1; color:#E2683C; filter:drop-shadow(0 0 14px rgba(226,104,60,.5))">♈&#xFE0E;</span>
+    </div>
+    <div style="margin-top:14px; width:248px; height:248px; filter:drop-shadow(0 0 34px rgba(226,104,60,.4))">
+      <dc-import name="EnergyCompass" vector="{{ userVector }}" size="248" accent="#E2683C" hint-size="248px,248px" style="display:block;width:248px;height:248px"></dc-import>
+    </div>
+    <div style="display:inline-flex; align-items:center; gap:7px; margin-top:18px; padding:6px 14px; border-radius:999px; background:rgba(226,104,60,.18); border:1px solid rgba(226,104,60,.55)">
+      <span style="width:6px; height:6px; border-radius:50%; background:#E2683C"></span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; color:#F0B59A">显异 · Marked Drift</span>
+    </div>
+    <h2 style="margin:18px 0 0; font-family:'Noto Serif SC',serif; font-weight:600; font-size:38px; line-height:1.05; text-align:center; border-bottom:2px solid #E2683C; padding-bottom:10px">炽焰先锋</h2>
+    <p style="margin:10px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; color:#d7ccae">The Ember Vanguard</p>
+    <div style="display:flex; gap:9px; margin-top:20px">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 13px; border-radius:999px; color:#F0B59A; border:1px solid rgba(226,104,60,.5)">主动</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 13px; border-radius:999px; color:#E2CB8C; border:1px solid rgba(201,162,75,.5)">热望</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 13px; border-radius:999px; color:#BBD4E2; border:1px solid rgba(159,193,212,.5)">不安分</span>
+    </div>
+    <div style="margin-top:auto; display:flex; align-items:center; justify-content:space-between; width:100%; padding-top:22px; border-top:1px solid rgba(255,255,255,.08)">
+      <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:#8089b0">星座是起点，不是终点</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#6b76a8">astropersona.app</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 11 · SHARE CARD — WATER ============ -->
+<div style="position:absolute; left:420px; top:3860px; width:380px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#9FC1D4; text-transform:uppercase">11 — 分享卡 · 水 Water</div>
+  <div style="position:relative; height:660px; background-color:#0E1530; background-image:radial-gradient(120% 80% at 50% 6%,rgba(46,124,138,.30),transparent 55%),radial-gradient(1.4px 1.4px at 24% 16%,rgba(244,239,230,.4),transparent),radial-gradient(1.2px 1.2px at 76% 24%,rgba(159,193,212,.4),transparent),radial-gradient(1px 1px at 58% 42%,rgba(244,239,230,.25),transparent),radial-gradient(1px 1px at 34% 62%,rgba(46,124,138,.35),transparent); border:1px solid rgba(46,124,138,.4); border-radius:26px; box-shadow:0 50px 110px rgba(0,0,0,.6); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif; display:flex; flex-direction:column; align-items:center; padding:30px 30px 26px">
+    <div style="display:flex; align-items:center; justify-content:space-between; width:100%">
+      <span style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:14px; letter-spacing:.04em; color:#C9A24B">Astro Persona</span>
+      <span style="font-family:'Noto Sans Symbols 2',serif; font-variant-emoji:text; font-size:30px; line-height:1; color:#2E7C8A; filter:drop-shadow(0 0 14px rgba(46,124,138,.6))">♓&#xFE0E;</span>
+    </div>
+    <div style="margin-top:14px; width:248px; height:248px; filter:drop-shadow(0 0 34px rgba(46,124,138,.5))">
+      <dc-import name="EnergyCompass" vector="{{ card2Vector }}" size="248" accent="#2E7C8A" hint-size="248px,248px" style="display:block;width:248px;height:248px"></dc-import>
+    </div>
+    <div style="display:inline-flex; align-items:center; gap:7px; margin-top:18px; padding:6px 14px; border-radius:999px; background:rgba(46,124,138,.2); border:1px solid rgba(46,124,138,.6)">
+      <span style="width:6px; height:6px; border-radius:50%; background:#2E7C8A"></span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; color:#9FC1D4">微异 · Minor Drift</span>
+    </div>
+    <h2 style="margin:18px 0 0; font-family:'Noto Serif SC',serif; font-weight:600; font-size:34px; line-height:1.05; text-align:center; border-bottom:2px solid #2E7C8A; padding-bottom:10px">潮汐织梦者</h2>
+    <p style="margin:10px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; color:#bcd2dc">The Tide Weaver</p>
+    <div style="display:flex; gap:9px; margin-top:20px">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 13px; border-radius:999px; color:#9FC1D4; border:1px solid rgba(159,193,212,.5)">共情</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 13px; border-radius:999px; color:#7FC0CC; border:1px solid rgba(46,124,138,.6)">直觉</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 13px; border-radius:999px; color:#E2CB8C; border:1px solid rgba(201,162,75,.5)">深流</span>
+    </div>
+    <div style="margin-top:auto; display:flex; align-items:center; justify-content:space-between; width:100%; padding-top:22px; border-top:1px solid rgba(255,255,255,.08)">
+      <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:#8089b0">星座是起点，不是终点</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#6b76a8">astropersona.app</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 12 · SHARE CARD — EARTH ============ -->
+<div style="position:absolute; left:840px; top:3860px; width:380px">
+  <div data-drags-parent="1" style="margin:0 0 14px; font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.16em; color:#8A9A5B; text-transform:uppercase">12 — 分享卡 · 土 Earth</div>
+  <div style="position:relative; height:660px; background-color:#0E1530; background-image:radial-gradient(120% 80% at 50% 6%,rgba(138,154,91,.26),transparent 55%),radial-gradient(1.4px 1.4px at 26% 15%,rgba(244,239,230,.4),transparent),radial-gradient(1.2px 1.2px at 74% 23%,rgba(138,154,91,.4),transparent),radial-gradient(1px 1px at 56% 41%,rgba(244,239,230,.25),transparent),radial-gradient(1px 1px at 32% 61%,rgba(138,154,91,.35),transparent); border:1px solid rgba(138,154,91,.4); border-radius:26px; box-shadow:0 50px 110px rgba(0,0,0,.6); overflow:hidden; color:#F4EFE6; font-family:'Inter','Noto Sans SC',sans-serif; display:flex; flex-direction:column; align-items:center; padding:30px 30px 26px">
+    <div style="display:flex; align-items:center; justify-content:space-between; width:100%">
+      <span style="font-family:'Cormorant Garamond',serif; font-weight:700; font-size:14px; letter-spacing:.04em; color:#C9A24B">Astro Persona</span>
+      <span style="font-family:'Noto Sans Symbols 2',serif; font-variant-emoji:text; font-size:30px; line-height:1; color:#8A9A5B; filter:drop-shadow(0 0 14px rgba(138,154,91,.6))">♑&#xFE0E;</span>
+    </div>
+    <div style="margin-top:14px; width:248px; height:248px; filter:drop-shadow(0 0 34px rgba(138,154,91,.45))">
+      <dc-import name="EnergyCompass" vector="{{ card3Vector }}" size="248" accent="#8A9A5B" hint-size="248px,248px" style="display:block;width:248px;height:248px"></dc-import>
+    </div>
+    <div style="display:inline-flex; align-items:center; gap:7px; margin-top:18px; padding:6px 14px; border-radius:999px; background:rgba(138,154,91,.2); border:1px solid rgba(138,154,91,.6)">
+      <span style="width:6px; height:6px; border-radius:50%; background:#8A9A5B"></span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; color:#B7C089">典型 · True to sign</span>
+    </div>
+    <h2 style="margin:18px 0 0; font-family:'Noto Serif SC',serif; font-weight:600; font-size:34px; line-height:1.05; text-align:center; border-bottom:2px solid #8A9A5B; padding-bottom:10px">磐石筑梦人</h2>
+    <p style="margin:10px 0 0; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:22px; color:#c4cba6">The Bedrock Builder</p>
+    <div style="display:flex; gap:9px; margin-top:20px">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 13px; border-radius:999px; color:#B7C089; border:1px solid rgba(138,154,91,.6)">笃定</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 13px; border-radius:999px; color:#E2CB8C; border:1px solid rgba(201,162,75,.5)">秩序</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 13px; border-radius:999px; color:#9FC1D4; border:1px solid rgba(159,193,212,.5)">耐性</span>
+    </div>
+    <div style="margin-top:auto; display:flex; align-items:center; justify-content:space-between; width:100%; padding-top:22px; border-top:1px solid rgba(255,255,255,.08)">
+      <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px; color:#8089b0">星座是起点，不是终点</span>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#6b76a8">astropersona.app</span>
+    </div>
+  </div>
+</div></x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const C = { fire: '#E2683C', earth: '#8A9A5B', air: '#9FC1D4', water: '#2E7C8A', gold: '#C9A24B' };
+    const userVector = { fire: .86, earth: .32, air: .66, water: .28, expr: .74, order: .38 };
+    const ariesBaseline = { fire: .80, earth: .46, air: .54, water: .36, expr: .66, order: .52 };
+    const matchVector = { fire: .70, earth: .30, air: .80, water: .42, expr: .62, order: .30 };
+    const heroVector = { fire: .78, earth: .50, air: .62, water: .44, expr: .60, order: .50 };
+    const teaserVector = { fire: .92, earth: .20, air: .72, water: .24, expr: .84, order: .30 };
+    const signGroups = [
+      { label: '火 · Fire', color: C.fire, signs: [
+        { glyph: '\u2648', zh: '白羊座', en: 'Aries', dates: '03.21–04.19', kw: '莽撞先行 · Headstrong' },
+        { glyph: '\u264C', zh: '狮子座', en: 'Leo', dates: '07.23–08.22', kw: '天生主角 · Radiant' },
+        { glyph: '\u2650', zh: '射手座', en: 'Sagittarius', dates: '11.22–12.21', kw: '远方信徒 · Seeker' } ] },
+      { label: '土 · Earth', color: C.earth, signs: [
+        { glyph: '\u2649', zh: '金牛座', en: 'Taurus', dates: '04.20–05.20', kw: '稳如磐石 · Grounded' },
+        { glyph: '\u264D', zh: '处女座', en: 'Virgo', dates: '08.23–09.22', kw: '精确之眼 · Precise' },
+        { glyph: '\u2651', zh: '摩羯座', en: 'Capricorn', dates: '12.22–01.19', kw: '长期主义 · Enduring' } ] },
+      { label: '风 · Air', color: C.air, signs: [
+        { glyph: '\u264A', zh: '双子座', en: 'Gemini', dates: '05.21–06.20', kw: '思维跳跃 · Quicksilver' },
+        { glyph: '\u264E', zh: '天秤座', en: 'Libra', dates: '09.23–10.22', kw: '权衡之美 · Poised' },
+        { glyph: '\u2652', zh: '水瓶座', en: 'Aquarius', dates: '01.20–02.18', kw: '未来来客 · Maverick' } ] },
+      { label: '水 · Water', color: C.water, signs: [
+        { glyph: '\u264B', zh: '巨蟹座', en: 'Cancer', dates: '06.21–07.22', kw: '柔软铠甲 · Tender' },
+        { glyph: '\u264F', zh: '天蝎座', en: 'Scorpio', dates: '10.23–11.21', kw: '深海引力 · Intense' },
+        { glyph: '\u2653', zh: '双鱼座', en: 'Pisces', dates: '02.19–03.20', kw: '潮汐织梦 · Dreaming' } ] }
+    ];
+    const scores = [
+      { zh: '火', en: 'Fire', val: 86, color: C.fire, role: '主导 Lead' },
+      { zh: '显', en: 'Expr', val: 74, color: C.gold, role: '' },
+      { zh: '风', en: 'Air', val: 66, color: C.air, role: '' },
+      { zh: '序', en: 'Order', val: 38, color: C.gold, role: '' },
+      { zh: '土', en: 'Earth', val: 32, color: C.earth, role: '' },
+      { zh: '水', en: 'Water', val: 28, color: C.water, role: '缺失 Gap' }
+    ];
+    const matchList = [
+      { glyph: '\u2650', zh: '射手座', en: 'Sagittarius', pct: 88, color: C.fire,
+        why: '火象同频，你的冲劲遇上他的远方；松弛的"序"轴让彼此都不必紧绷。',
+        en2: 'Fiery resonance—your drive meets their horizon, loose order keeps it easy.',
+        tags: [ { t: '相似 · 火', c: C.fire }, { t: '互补 · 序', c: C.gold } ] },
+      { glyph: '\u2652', zh: '水瓶座', en: 'Aquarius', pct: 81, color: C.air,
+        why: '风助火势，思辨点燃行动；"显"维高度相似，话总能接上。',
+        en2: 'Air feeds fire—ideas spark action, and you read each other out loud.',
+        tags: [ { t: '互补 · 风', c: C.air }, { t: '相似 · 显', c: C.gold } ] },
+      { glyph: '\u264C', zh: '狮子座', en: 'Leo', pct: 76, color: C.fire,
+        why: '双火相照，热度需要彼此让位；与你的理想型契合中等。',
+        en2: 'Twin flames—warmth that must learn to take turns.',
+        tags: [ { t: '相似 · 火', c: C.fire }, { t: '注意 · 序', c: C.gold } ] }
+    ];
+    [...signGroups.flatMap(g => g.signs), ...matchList].forEach(s => { s.glyph += '\uFE0E'; });
+    return {
+      T: true, userVector, ariesBaseline, matchVector, heroVector, teaserVector,
+      signGroups, scores, matchList,
+      card2Vector: { fire: .30, earth: .40, air: .45, water: .86, expr: .34, order: .56 },
+      card3Vector: { fire: .34, earth: .84, air: .40, water: .50, expr: .28, order: .82 }
+    };
+  }
+}
+</script>
+</body>
+</html>
