@@ -48,6 +48,8 @@ button {
   background-image: none;
   appearance: none;
   -webkit-appearance: none;
+  color: inherit;
+  font: inherit;
 }
 
 /* Zodiac glyphs must render as monochrome text (element-coloured), not colour
