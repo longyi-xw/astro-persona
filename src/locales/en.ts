@@ -79,7 +79,7 @@ export default {
     quick: 'Quick',
     quickNote: '~12 questions · ~3 min',
     full: 'Full',
-    fullNote: '~20 questions · ~6 min',
+    fullNote: '16 questions · ~5 min',
     begin: 'Begin the test',
     note: 'Situational choices—trust your first instinct.',
   },

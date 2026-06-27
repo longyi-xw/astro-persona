@@ -79,7 +79,7 @@ export default {
     quick: '快测',
     quickNote: '约 12 题 · Quick · ~3 min',
     full: '完整',
-    fullNote: '约 20 题 · Full · ~6 min',
+    fullNote: '共 16 题 · Full · ~5 min',
     begin: '开始测试 · Begin the test',
     note: '题目为情境化选择，请凭直觉作答 · Not a clinical assessment.',
   },

@@ -1,6 +1,7 @@
 // 全项目唯一的内容/配置数据入口（design/05 §A1）。
 // 不变量：组件与 src/core 禁止直接 import content/*.json，一律经这里取用。
 import {
+  computeMaxScores,
   validateContent,
   type Config,
   type CopyFile,
@@ -39,6 +40,8 @@ export const getSignContent = (locale: Locale, id: string): SignContent | undefi
 /* ---------- 题库 ---------- */
 export const getQuestionItems = (): QuestionItem[] => C.items.questions
 export const getMaxScores = (): Record<Dim, number> => C.maxScores
+/** Per-tier normalization denominator (quick uses a subset of questions). */
+export const maxScoresFor = (qs: QuestionItem[]): Record<Dim, number> => computeMaxScores(qs)
 export const getQuestionContent = (locale: Locale) => C.questionContent[locale].questions
 
 /* ---------- 配置 ---------- */

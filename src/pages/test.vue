@@ -12,7 +12,7 @@ const { t, tm, locale } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
 const store = useSession()
-const { sign, ageBand, vector, total } = storeToRefs(store)
+const { sign, ageBand, tier, vector, total } = storeToRefs(store)
 
 type Phase = 'intro' | 'run' | 'generating'
 const phase = ref<Phase>('intro')
@@ -111,6 +111,30 @@ function finish() {
             :class="ageBand === i ? 'bg-[rgba(201,162,75,0.16)] text-bone font-600 border border-gold' : 'text-muted border border-[rgba(255,255,255,0.12)]'"
             @click="ageBand = i"
           >{{ label }}</button>
+        </div>
+      </div>
+
+      <div class="mt-7">
+        <div class="eyebrow">{{ t('testIntro.length') }}</div>
+        <div class="flex gap-2.5 mt-3.5">
+          <button
+            type="button"
+            class="flex-1 p-4 rounded-2xl text-left transition-colors"
+            :class="tier === 'quick' ? 'border border-gold bg-[rgba(201,162,75,0.14)]' : 'border border-[rgba(255,255,255,0.12)] bg-[rgba(27,36,82,0.5)]'"
+            @click="tier = 'quick'"
+          >
+            <div class="font-serif-sc text-[16px]">{{ t('testIntro.quick') }}</div>
+            <div class="text-[12px] text-muted mt-1">{{ t('testIntro.quickNote') }}</div>
+          </button>
+          <button
+            type="button"
+            class="flex-1 p-4 rounded-2xl text-left transition-colors"
+            :class="tier === 'full' ? 'border border-gold bg-[rgba(201,162,75,0.14)]' : 'border border-[rgba(255,255,255,0.12)] bg-[rgba(27,36,82,0.5)]'"
+            @click="tier = 'full'"
+          >
+            <div class="font-serif-sc text-[16px]">{{ t('testIntro.full') }}</div>
+            <div class="text-[12px] text-[#d7ccae] mt-1">{{ t('testIntro.fullNote') }}</div>
+          </button>
         </div>
       </div>
 

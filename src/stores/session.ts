@@ -5,20 +5,25 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { AnswerMap, PersonalityVector } from '~/core/types'
 import { score } from '~/core/personality'
-import { getMaxScores, getQuestionItems } from '~/content'
+import { getQuestionItems, maxScoresFor } from '~/content'
+
+/** 快测取前 N 题（仍覆盖六维）；完整为全部题。 */
+const QUICK_COUNT = 12
 
 export const useSession = defineStore('session', () => {
   const sign = ref<string>('aries')
   const ageBand = ref<number>(2)
+  const tier = ref<'quick' | 'full'>('full')
   const answers = ref<AnswerMap>({})
   const ideal = ref<PersonalityVector | null>(null)
 
-  const items = getQuestionItems()
-  const maxScores = getMaxScores()
+  const allItems = getQuestionItems()
+  const items = computed(() => (tier.value === 'quick' ? allItems.slice(0, QUICK_COUNT) : allItems))
+  const maxScores = computed(() => maxScoresFor(items.value))
 
-  const total = computed(() => items.length)
-  const vector = computed<PersonalityVector>(() => score(items, answers.value, maxScores))
-  const answeredCount = computed(() => items.filter((q) => answers.value[q.id] != null).length)
+  const total = computed(() => items.value.length)
+  const vector = computed<PersonalityVector>(() => score(items.value, answers.value, maxScores.value))
+  const answeredCount = computed(() => items.value.filter((q) => answers.value[q.id] != null).length)
   const complete = computed(() => total.value > 0 && answeredCount.value === total.value)
   const hasResult = computed(() => answeredCount.value > 0)
 
@@ -30,5 +35,5 @@ export const useSession = defineStore('session', () => {
     ideal.value = null
   }
 
-  return { sign, ageBand, answers, ideal, items, total, vector, answeredCount, complete, hasResult, answer, reset }
+  return { sign, ageBand, tier, answers, ideal, items, total, vector, answeredCount, complete, hasResult, answer, reset }
 })
