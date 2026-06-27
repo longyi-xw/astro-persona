@@ -80,14 +80,14 @@ export default {
     quickNote: '约 12 题 · Quick · ~3 min',
     full: '完整',
     fullNote: '约 20 题 · Full · ~6 min',
-    begin: '开始测试',
-    note: '题目为情境化选择，请凭直觉作答。',
+    begin: '开始测试 · Begin the test',
+    note: '题目为情境化选择，请凭直觉作答 · Not a clinical assessment.',
   },
   testRun: {
     prev: '上一题',
     counter: '第 {n} / {total} 题',
     scenario: '情境 · Scenario',
-    hint: '凭第一反应作答，没有标准答案。',
+    hint: '凭第一反应作答，没有标准答案 · Trust your first instinct.',
   },
   generating: {
     title: '正在生成你的能量画像',

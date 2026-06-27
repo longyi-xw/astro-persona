@@ -30,8 +30,10 @@ const signPicker = computed(() =>
   })),
 )
 
+const otherLocale = computed<Locale>(() => (locale.value === 'zh' ? 'en' : 'zh'))
 const current = computed(() => store.items[index.value])
 const currentText = computed(() => (current.value ? getQuestionContent(locale.value as Locale)[current.value.id] : undefined))
+const currentAlt = computed(() => (current.value ? getQuestionContent(otherLocale.value)[current.value.id] : undefined))
 const progress = computed(() => Math.round((index.value / Math.max(1, total.value)) * 100))
 
 function start() {
@@ -129,6 +131,7 @@ function finish() {
       <div class="pt-10">
         <div class="eyebrow mb-4">{{ t('testRun.scenario') }}</div>
         <h2 class="m-0 font-serif-sc font-500 text-[24px] leading-[1.45]">{{ currentText.prompt }}</h2>
+        <p v-if="currentAlt" class="mt-2.5 font-serif-latin italic text-[18px] leading-[1.4] text-[#cdbf9e]">{{ currentAlt.prompt }}</p>
 
         <div class="flex flex-col gap-3 mt-8">
           <button
@@ -140,7 +143,10 @@ function finish() {
             @click="choose(opt.id)"
           >
             <span class="font-mono text-[15px] w-7.5 h-7.5 rounded-full flex items-center justify-center flex-none" :class="store.answers[current.id] === opt.id ? 'bg-gold text-ink font-600' : 'text-muted border border-[rgba(255,255,255,0.2)]'">{{ String.fromCharCode(65 + i) }}</span>
-            <span class="text-[15px] leading-[1.5]">{{ currentText.options[opt.id] }}</span>
+            <span>
+              <span class="block text-[15px] leading-[1.5]">{{ currentText.options[opt.id] }}</span>
+              <span v-if="currentAlt" class="block text-[12px] text-muted mt-0.5">{{ currentAlt.options[opt.id] }}</span>
+            </span>
           </button>
         </div>
       </div>
