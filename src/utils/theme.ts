@@ -29,3 +29,9 @@ export const driftKey = (level: MutationLevel): '0' | '1' | '2' | '3' =>
 
 /** Append U+FE0E so zodiac glyphs render as text, not colour emoji. */
 export const textGlyph = (glyph: string): string => `${glyph}︎`
+
+/** [m,d]→[m,d] → "MM.DD–MM.DD". */
+export const formatDateRange = (r: { start: [number, number]; end: [number, number] }): string => {
+  const p = (n: number) => String(n).padStart(2, '0')
+  return `${p(r.start[0])}.${p(r.start[1])}–${p(r.end[0])}.${p(r.end[1])}`
+}

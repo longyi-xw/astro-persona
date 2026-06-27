@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { signs, signText, type Locale } from '~/data'
+import { getSignContent, getSignProfiles, type Locale } from '~/content'
 import { ELEMENT_COLOR } from '~/utils/theme'
 import type { Element, PersonalityVector } from '~/core/types'
 
@@ -15,10 +15,9 @@ const groups = computed(() =>
     el,
     color: ELEMENT_COLOR[el],
     blurb: t(`home.elementBlurb.${el}`),
-    en: t(`home.elementBlurb.${el}`),
-    names: signs
+    names: getSignProfiles()
       .filter((s) => s.element === el)
-      .map((s) => signText(locale.value as Locale, s.id)?.name)
+      .map((s) => getSignContent(locale.value as Locale, s.id)?.name)
       .join(' · '),
   })),
 )
@@ -33,7 +32,6 @@ useSeoMeta({
 
 <template>
   <div>
-    <!-- HERO -->
     <section class="starfield">
       <div class="max-w-6xl mx-auto grid lg:grid-cols-[1.12fr_0.88fr] gap-6 items-center px-6 sm:px-12 pt-14 pb-12">
         <div>
@@ -55,7 +53,6 @@ useSeoMeta({
         </div>
       </div>
 
-      <!-- FOUR ELEMENTS -->
       <div class="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3.5 px-6 sm:px-12">
         <NuxtLink
           v-for="g in groups"
@@ -64,13 +61,12 @@ useSeoMeta({
           class="p-4 rounded-2xl bg-[rgba(27,36,82,0.55)] transition-transform hover:-translate-y-0.5"
           :style="{ border: `1px solid ${g.color}47` }"
         >
-          <div class="font-mono text-[11.5px] tracking-[0.12em]" :style="{ color: g.color }">{{ t('elements.' + g.el) }} · {{ t('signsList.groups.' + g.el).split(' · ')[1] || g.el.toUpperCase() }}</div>
+          <div class="font-mono text-[11.5px] tracking-[0.12em]" :style="{ color: g.color }">{{ t('elements.' + g.el) }} · {{ t('signsList.groups.' + g.el) }}</div>
           <div class="font-serif-sc text-[17px] mt-2.5">{{ g.blurb }}</div>
           <div class="text-[12px] text-muted mt-1.5 leading-[1.5]">{{ g.names }}</div>
         </NuxtLink>
       </div>
 
-      <!-- DRIFT TEASER -->
       <div class="max-w-6xl mx-auto px-6 sm:px-12 mt-9 pb-12">
         <div class="flex items-center gap-6 p-5 sm:px-6 rounded-[18px] bg-[rgba(27,36,82,0.6)] border border-[rgba(201,162,75,0.16)]">
           <div class="w-[92px] h-[92px] flex-none hidden sm:block">

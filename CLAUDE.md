@@ -12,6 +12,7 @@
 - 提交前必跑：pnpm lint && pnpm typecheck && pnpm test（= pnpm check）
 
 ## 架构铁律
+- 所有内容/配置数据只能经 src/content/index.ts 取用；组件与 src/core 禁止直接 import content/*.json（src/content 启动时 zod 校验一次，失败即 build/test 变红）。
 - src/core/* 必须是纯函数，无框架依赖，所有参数来自 content/config/（注入而非 import），必须有 Vitest 单测。
 - 内容/文案/权重一律放 content/*，禁止在组件里硬编码展示文案或星座数据。
 - 双语文案按稳定 id 对齐；算法只认 id，与语言无关。

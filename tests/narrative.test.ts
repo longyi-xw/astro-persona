@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import { LLMNarrativeProvider, type NarrativeContext, TemplateNarrativeProvider } from '~/narrative'
-import { copyBundles } from '~/data'
+import { getCopyBundles } from '~/content'
 import type { PersonalityVector } from '~/core/types'
 
-const provider = new TemplateNarrativeProvider(copyBundles)
+const provider = new TemplateNarrativeProvider(getCopyBundles())
 const fire: PersonalityVector = { fire: 0.86, earth: 0.32, air: 0.66, water: 0.28, expr: 0.74, order: 0.38 }
 
 const ctx = (over: Partial<NarrativeContext> = {}): NarrativeContext => ({
@@ -14,47 +14,61 @@ const ctx = (over: Partial<NarrativeContext> = {}): NarrativeContext => ({
   ...over,
 })
 
-describe('TemplateNarrativeProvider', () => {
-  it('names the archetype by dominant element (zh & en)', () => {
-    expect(provider.archetype(ctx()).name).toBe('炽焰先锋')
-    expect(provider.archetype(ctx({ locale: 'en' })).latin).toBe('The Ember Vanguard')
+describe('archetype & keywords', () => {
+  it('names by top-2 dominant dims (fire·expr → 燃核推进 / The Ignition)', () => {
+    const a = provider.archetype(ctx())
+    expect(a.name).toBe('燃核推进')
+    expect(a.latin).toBe('The Ignition')
+    expect(a.blurb).toBeTruthy()
   })
 
-  it('returns the dominant element keyword pool (matches prototype tags)', () => {
-    expect(provider.keywords(ctx())).toEqual(['主动', '热望', '不安分'])
+  it('uses the English name in the en bundle', () => {
+    expect(provider.archetype(ctx({ locale: 'en' })).name).toBe('The Ignition')
   })
 
-  it('is deterministic — same input, same prose', async () => {
-    const a = await provider.personalityCopy(ctx())
-    const b = await provider.personalityCopy(ctx())
-    expect(a).toBe(b)
-    expect(a).toContain('炽焰先锋')
+  it('keywords pull from the dominant element high pool', () => {
+    expect(provider.keywords(ctx())).toContain('炽烈')
+  })
+})
+
+describe('mutation copy (multi-variant, deterministic)', () => {
+  it('picks a Marked-drift variant with the sign interpolated, stable per vector', async () => {
+    const c = ctx({ mutation: { level: 2, dims: ['water'] } })
+    const a = await provider.mutationCopy(c)
+    expect(a).toBe(await provider.mutationCopy(c)) // deterministic
+    expect(a).not.toContain('{sign}') // interpolated
+    const variants = getCopyBundles().zh.mutation.notable.map((s) => s.replace('{sign}', '白羊座'))
+    expect(variants).toContain(a)
   })
 
-  it('renders the Marked-Drift message with the sign interpolated', async () => {
-    const zh = await provider.mutationCopy(ctx({ mutation: { level: 2, dims: ['water'] } }))
-    expect(zh).toBe('你已经走出了星座给的剧本。这一切，都是你一路经历换来的。')
-    const en = await provider.mutationCopy(ctx({ locale: 'en', signName: 'Aries', mutation: { level: 1, dims: ['water', 'order'] } }))
-    expect(en).toContain('Aries')
+  it('emits a valid variant for a different vector/sign too', async () => {
+    const earthy: PersonalityVector = { fire: 0.2, earth: 0.9, air: 0.3, water: 0.4, expr: 0.3, order: 0.85 }
+    const line = await provider.mutationCopy(ctx({ vector: earthy, sign: 'capricorn', signName: '摩羯座', mutation: { level: 3, dims: ['fire'] } }))
+    const variants = getCopyBundles().zh.mutation.extreme.map((s) => s.replace('{sign}', '摩羯座'))
+    expect(variants).toContain(line)
   })
 
-  it('builds match reasons from relation + hit dims + ideal', () => {
+  it('typical (level 0) reads as true-to-sign', async () => {
+    const line = await provider.mutationCopy(ctx({ mutation: { level: 0, dims: [] } }))
+    expect(getCopyBundles().zh.mutation.typical.map((s) => s.replace('{sign}', '白羊座'))).toContain(line)
+  })
+})
+
+describe('match reasons', () => {
+  it('builds a reason from sameElement + hit dims + ideal', () => {
     const reasons = provider.matchReasons(
-      ctx({
-        match: [{ sign: 'sagittarius', relation: 'same', similarDims: ['order'], complementDims: ['fire'], idealFit: 0.9 }],
-      }),
+      ctx({ match: [{ sign: 'leo', sameElement: true, element: 'fire', similarDims: ['order'], complementDims: ['fire'], idealFit: 0.9 }] }),
     )
-    expect(reasons[0]).toContain('同象同频')
+    expect(reasons[0]).toContain('火象同频')
     expect(reasons[0]).toContain('理想型')
   })
 })
 
 describe('LLMNarrativeProvider (stub)', () => {
-  it('degrades to the template output verbatim this period', async () => {
+  it('degrades to the template output verbatim', async () => {
     const llm = new LLMNarrativeProvider(provider)
     const c = ctx({ mutation: { level: 2, dims: ['water'] } })
     expect(llm.archetype(c)).toEqual(provider.archetype(c))
-    expect(await llm.personalityCopy(c)).toBe(await provider.personalityCopy(c))
     expect(await llm.mutationCopy(c)).toBe(await provider.mutationCopy(c))
   })
 })

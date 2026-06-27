@@ -1,43 +1,66 @@
 {
-  "_comment": "Domain copy for TemplateNarrativeProvider. Placeholders: {sign} {dims} {dominant} {missing} {relation} {factors} {ideal}.",
-  "archetypes": {
-    "fire": { "name": "The Ember Vanguard", "latin": "The Ember Vanguard" },
-    "earth": { "name": "The Bedrock Builder", "latin": "The Bedrock Builder" },
-    "air": { "name": "The Gale Thinker", "latin": "The Gale Thinker" },
-    "water": { "name": "The Tide Weaver", "latin": "The Tide Weaver" }
-  },
+  "version": "1.0.0",
+  "locale": "en",
+  "_comment": "Cool instrument × fire × fate. Archetypes keyed by top-1/top-2 dims; mutation has multiple variants per level, picked deterministically from the vector. Placeholders: {sign} {dominant} {missing} {element} {dim} {dimU} {dimB}.",
   "dims": { "fire": "Fire", "earth": "Earth", "air": "Air", "water": "Water", "expr": "Outward", "order": "Order" },
-  "dimsFull": { "fire": "Fire · drive", "earth": "Earth · ground", "air": "Air · thought", "water": "Water · feeling", "expr": "Outward", "order": "Order" },
+  "archetypes": [
+    { "id": "fire_expr", "primary": "fire", "secondary": "expr", "name": "The Ignition", "blurb": "One spark, and the orbit's already lit." },
+    { "id": "fire_air", "primary": "fire", "secondary": "air", "name": "The Pulse", "blurb": "Sparks fly; drive and idea on one frequency." },
+    { "id": "fire_order", "primary": "fire", "secondary": "order", "name": "The Spearhead", "blurb": "Drive, forged into guidance—straight to target." },
+    { "id": "fire", "primary": "fire", "name": "The Ember Core", "blurb": "The core stays burning. It never cuts out." },
+    { "id": "earth_order", "primary": "earth", "secondary": "order", "name": "The Bedrock", "blurb": "Brick by brick, stacking time into certainty." },
+    { "id": "earth_water", "primary": "earth", "secondary": "water", "name": "The Anchor", "blurb": "Steady all the way down to tender roots." },
+    { "id": "earth", "primary": "earth", "name": "The Load-Bearer", "blurb": "A ton bears down; he doesn't move." },
+    { "id": "air_expr", "primary": "air", "secondary": "expr", "name": "The Signal", "blurb": "Mind first, signal out instantly." },
+    { "id": "air_order", "primary": "air", "secondary": "order", "name": "The Matrix", "blurb": "Clear logic, deployed to array the imagination." },
+    { "id": "air", "primary": "air", "name": "The Frequency", "blurb": "Always tuned to the next frequency." },
+    { "id": "water_expr", "primary": "water", "secondary": "expr", "name": "The Tideweaver", "blurb": "Weaving feeling into a net that glows." },
+    { "id": "water_order", "primary": "water", "secondary": "order", "name": "The Regulator", "blurb": "However the tide surges, the reading holds." },
+    { "id": "water", "primary": "water", "name": "The Abyss", "blurb": "Still on the surface—an ocean underneath." },
+    { "id": "expr_fire", "primary": "expr", "secondary": "fire", "name": "The Flashpoint", "blurb": "Steps into the light and ignites the room." },
+    { "id": "expr", "primary": "expr", "name": "The Beacon", "blurb": "Presence is how he exists." },
+    { "id": "order_earth", "primary": "order", "secondary": "earth", "name": "The Keystone", "blurb": "Everything in place, then he calibrates to zero." },
+    { "id": "order", "primary": "order", "name": "The Calibrator", "blurb": "Zero tolerance for drift—his own included." }
+  ],
   "keywords": {
-    "fire": ["Driven", "Ardent", "Restless"],
-    "earth": ["Steady", "Ordered", "Patient"],
-    "air": ["Curious", "Nimble", "Inventive"],
-    "water": ["Empathic", "Intuitive", "Deep"],
-    "expr": ["Expressive", "Vocal", "Present"],
-    "order": ["Methodical", "Measured", "Structured"]
+    "fire": { "high": ["Blazing", "Decisive", "Driving"], "low": ["Tepid", "Hesitant"] },
+    "earth": { "high": ["Solid", "Grounded", "Load-bearing"], "low": ["Unmoored", "Loose"] },
+    "air": { "high": ["Nimble", "Analytical", "Inventive"], "low": ["Slow", "Set"] },
+    "water": { "high": ["Deep", "Intuitive", "Empathic"], "low": ["Distant", "Cool"] },
+    "expr": { "high": ["Outward", "Present", "Vocal"], "low": ["Reserved", "Hidden"] },
+    "order": { "high": ["Ordered", "Measured", "Precise"], "low": ["Freewheeling", "Loose"] }
   },
   "mutationLabel": { "0": "True to sign", "1": "Minor Drift", "2": "Marked Drift", "3": "Radical Drift" },
   "mutation": {
-    "0": "Your personality sits close to the {sign} baseline—your sign called it right.",
-    "1": "A hairline crack from the {sign} baseline: {dims} no longer quite follow the script.",
-    "2": "You've outgrown the script your sign handed you—every bit of it earned on the way here.",
-    "3": "You've all but rewritten {sign}: your personality is defined not by your sign, but by the road you've walked."
+    "typical": [
+      "Match confirmed: you trace the {sign} baseline almost exactly. The chart called it.",
+      "Calibrated: still on the orbit {sign} drew for you—it knows you, and you know it."
+    ],
+    "micro": [
+      "Minor drift detected: still mostly {sign}, but a few edges the chart can't predict now—those, you ground yourself.",
+      "A hairline in the trajectory: you haven't left {sign}, you've just started marking your own scale on its edge.",
+      "The deviation hovers at the threshold—{sign} still holds most of you, but one piece answers only to you."
+    ],
+    "notable": [
+      "Marked drift: you've stepped off the script {sign} wrote. This fork isn't an error—it's a fate you walked into.",
+      "Reading confirmed: long gone from the orbit your sign assigned. The chart concedes—you went further than it dared.",
+      "The divergence is set: {sign} was your start, not your sentence. The rest of the road, you lit yourself."
+    ],
+    "extreme": [
+      "Radical drift: you've all but rewritten {sign}. The chart fails before you—who you are is fixed by every step you took.",
+      "Off the scale: this isn't {sign} anymore—it's you. Fate didn't abandon you; you seized the pen.",
+      "Baseline at zero: no sign can contain you. You've burned into your own coordinate—forged, all of it, on the way."
+    ]
   },
-  "relation": {
-    "same": "same-element resonance",
-    "sextile": "complementary spark",
-    "square": "a charged friction",
-    "opposition": "opposites attract",
-    "neutral": "parallel paths"
+  "matchReasons": {
+    "lead": "Readings aligned—",
+    "sameElement": "{element} resonance, orbits locked",
+    "complement": "your {dim} balances theirs",
+    "similar": "you read the same on {dim}",
+    "ideal": "a close match to the ideal you set",
+    "base": "overall reading runs high",
+    "sep": "; "
   },
-  "connectors": {
-    "similar": "aligned on {dims}",
-    "complement": "balanced on {dims}",
-    "and": " & ",
-    "idealHigh": ", and a close match to your ideal",
-    "idealMid": ", a fair match to your ideal",
-    "listSep": "; "
-  },
-  "personality": "{archetype}: led by {dominant}, with {missing} kept quiet—read from the scores, not from platitudes.",
-  "matchSummary": "With your real personality laid bare, these are the ones who can hold it."
+  "personality": "{archetype}: led by {dominant}, with {missing} near silent—this is you read from the data, not platitudes.",
+  "matchSummary": "With your real personality on the table, these read closest to you."
 }

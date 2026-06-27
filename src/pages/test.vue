@@ -1,34 +1,38 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useSession } from '~/stores/session'
-import { config, neutral, questionText, signById, signs, signText, type Locale } from '~/data'
+import { getConfig, getNeutral, getQuestionContent, getSignContent, getSignProfile, getSignProfiles, type Locale } from '~/content'
 import { effectiveBaseline } from '~/core/age'
 import { detectMutation } from '~/core/mutation'
 import { encodeResult } from '~/utils/resultCodec'
 import { ELEMENT_COLOR, textGlyph } from '~/utils/theme'
 import type { ResultState } from '~/core/types'
 
-const { t, locale } = useI18n()
+const { t, tm, locale } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
 const store = useSession()
-const { sign, ageBand, tier, vector, total } = storeToRefs(store)
+const { sign, ageBand, vector, total } = storeToRefs(store)
 
 type Phase = 'intro' | 'run' | 'generating'
 const phase = ref<Phase>('intro')
 const index = ref(0)
 
-// preset sign from a sign-detail CTA (?sign=aries)
-if (typeof route.query.sign === 'string' && signById(route.query.sign)) sign.value = route.query.sign
+if (typeof route.query.sign === 'string' && getSignProfile(route.query.sign)) sign.value = route.query.sign
 
-const ageBands = config.age.bands
+const bands = computed<string[]>(() => tm('testIntro.bands') as unknown as string[])
 const signPicker = computed(() =>
-  signs.map((s) => ({ id: s.id, glyph: textGlyph(s.glyph), color: ELEMENT_COLOR[s.element], name: signText(locale.value as Locale, s.id)?.name ?? s.id })),
+  getSignProfiles().map((s) => ({
+    id: s.id,
+    glyph: textGlyph(s.glyph),
+    color: ELEMENT_COLOR[s.element],
+    name: getSignContent(locale.value as Locale, s.id)?.name ?? s.id,
+  })),
 )
 
-const current = computed(() => store.tierQuestions[index.value])
-const currentText = computed(() => (current.value ? questionText(locale.value as Locale, current.value.id) : undefined))
-const progress = computed(() => Math.round(((index.value) / Math.max(1, total.value)) * 100))
+const current = computed(() => store.items[index.value])
+const currentText = computed(() => (current.value ? getQuestionContent(locale.value as Locale)[current.value.id] : undefined))
+const progress = computed(() => Math.round((index.value / Math.max(1, total.value)) * 100))
 
 function start() {
   store.reset()
@@ -50,9 +54,10 @@ function prev() {
 
 function finish() {
   phase.value = 'generating'
-  const profile = signById(sign.value)
+  const profile = getSignProfile(sign.value)
   if (!profile) return
-  const eff = effectiveBaseline(profile.baseline, neutral, ageBand.value, config)
+  const config = getConfig()
+  const eff = effectiveBaseline(profile.baseline, getNeutral(), ageBand.value, config)
   const mut = detectMutation(vector.value, eff, ageBand.value, config)
   const state: ResultState = {
     v: vector.value,
@@ -75,7 +80,6 @@ function finish() {
       <h1 class="m-0 font-serif-sc font-600 text-[28px] leading-[1.2]">{{ t('testIntro.title') }}</h1>
       <p class="mt-1 font-serif-latin italic text-[20px] text-[#cdbf9e]">{{ t('testIntro.titleLatin') }}</p>
 
-      <!-- sign -->
       <div class="mt-7">
         <div class="eyebrow">{{ t('nav.signs') }}</div>
         <div class="flex flex-wrap gap-2 mt-3.5">
@@ -93,34 +97,18 @@ function finish() {
         </div>
       </div>
 
-      <!-- age band -->
       <div class="mt-7">
         <div class="eyebrow">{{ t('testIntro.ageBand') }}</div>
         <div class="text-[12px] text-dim mt-1.5">{{ t('testIntro.ageNote') }}</div>
         <div class="flex flex-wrap gap-2 mt-3.5">
           <button
-            v-for="(b, i) in ageBands"
-            :key="b.id"
+            v-for="(label, i) in bands"
+            :key="label"
             type="button"
             class="px-4 py-2 rounded-full text-[13px] transition-colors"
             :class="ageBand === i ? 'bg-[rgba(201,162,75,0.16)] text-bone font-600 border border-gold' : 'text-muted border border-[rgba(255,255,255,0.12)]'"
             @click="ageBand = i"
-          >{{ b.id }}</button>
-        </div>
-      </div>
-
-      <!-- length -->
-      <div class="mt-7">
-        <div class="eyebrow">{{ t('testIntro.length') }}</div>
-        <div class="flex gap-2.5 mt-3.5">
-          <button type="button" class="flex-1 p-4 rounded-2xl text-left transition-colors" :class="tier === 'quick' ? 'border border-gold bg-[rgba(201,162,75,0.14)]' : 'border border-[rgba(255,255,255,0.12)] bg-[rgba(27,36,82,0.5)]'" @click="tier = 'quick'">
-            <div class="font-serif-sc text-[16px]">{{ t('testIntro.quick') }}</div>
-            <div class="text-[12px] text-muted mt-1">{{ t('testIntro.quickNote') }}</div>
-          </button>
-          <button type="button" class="flex-1 p-4 rounded-2xl text-left transition-colors" :class="tier === 'full' ? 'border border-gold bg-[rgba(201,162,75,0.14)]' : 'border border-[rgba(255,255,255,0.12)] bg-[rgba(27,36,82,0.5)]'" @click="tier = 'full'">
-            <div class="font-serif-sc text-[16px]">{{ t('testIntro.full') }}</div>
-            <div class="text-[12px] text-[#d7ccae] mt-1">{{ t('testIntro.fullNote') }}</div>
-          </button>
+          >{{ label }}</button>
         </div>
       </div>
 
@@ -140,7 +128,7 @@ function finish() {
 
       <div class="pt-10">
         <div class="eyebrow mb-4">{{ t('testRun.scenario') }}</div>
-        <h2 class="m-0 font-serif-sc font-500 text-[24px] leading-[1.45]">{{ currentText.scenario }}</h2>
+        <h2 class="m-0 font-serif-sc font-500 text-[24px] leading-[1.45]">{{ currentText.prompt }}</h2>
 
         <div class="flex flex-col gap-3 mt-8">
           <button

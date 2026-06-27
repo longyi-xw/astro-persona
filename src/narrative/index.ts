@@ -1,5 +1,5 @@
 // 工厂：通过 VITE_USE_LLM 切换实现，业务调用方代码零改动（design/02 §8）。
-import { copyBundles } from '~/data'
+import { getCopyBundles } from '~/content'
 import { LLMNarrativeProvider } from './llm.provider'
 import { TemplateNarrativeProvider } from './template.provider'
 import type { NarrativeProvider } from './provider'
@@ -14,7 +14,7 @@ const llmEnabled =
 
 /** Construct the active provider (template-only this period; LLM degrades to it). */
 export function createNarrative(useLlm = llmEnabled): NarrativeProvider {
-  const template = new TemplateNarrativeProvider(copyBundles)
+  const template = new TemplateNarrativeProvider(getCopyBundles())
   return useLlm ? new LLMNarrativeProvider(template) : template
 }
 

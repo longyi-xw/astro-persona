@@ -1,0 +1,76 @@
+{
+  "version": "1.0.0",
+  "dimensions": ["fire", "earth", "air", "water", "expr", "order"],
+  "scale": {
+    "min": 0,
+    "max": 3,
+    "note": "权重均为非负。打分：raw[d] = Σ(选中选项 weights[d])；归一化 v[d] = raw[d] / maxScores[d]，其中 maxScores[d] 为各题中该维度的最大可得权重之和。maxScores 应由 items 在加载时重算（见 content/README.md 的校验值），不要硬编码以免漂移。",
+    "polarAxes": "expr(内显0↔外显1) 与 order(混沌0↔守序1) 为极性轴：表达型/守序型选项带正权重，内省型/随性型选项不带该维权重（以缺省表示低分），并改为承载其它维度。"
+  },
+  "questions": [
+    { "id": "q01", "options": [
+      { "id": "a", "weights": { "fire": 2, "expr": 1 } },
+      { "id": "b", "weights": { "earth": 2, "order": 2 } }
+    ] },
+    { "id": "q02", "options": [
+      { "id": "a", "weights": { "water": 2 } },
+      { "id": "b", "weights": { "earth": 1, "air": 2, "order": 2 } }
+    ] },
+    { "id": "q03", "options": [
+      { "id": "a", "weights": { "expr": 2, "air": 1, "fire": 1 } },
+      { "id": "b", "weights": { "water": 1, "earth": 1 } }
+    ] },
+    { "id": "q04", "options": [
+      { "id": "a", "weights": { "fire": 2, "air": 1 } },
+      { "id": "b", "weights": { "earth": 2, "order": 1 } }
+    ] },
+    { "id": "q05", "options": [
+      { "id": "a", "weights": { "water": 3, "expr": 1 } },
+      { "id": "b", "weights": { "air": 2, "earth": 1 } }
+    ] },
+    { "id": "q06", "options": [
+      { "id": "a", "weights": { "fire": 1, "air": 1 } },
+      { "id": "b", "weights": { "earth": 1, "order": 3 } }
+    ] },
+    { "id": "q07", "options": [
+      { "id": "a", "weights": { "fire": 2, "expr": 2 } },
+      { "id": "b", "weights": { "water": 2 } }
+    ] },
+    { "id": "q08", "options": [
+      { "id": "a", "weights": { "air": 2, "fire": 1 } },
+      { "id": "b", "weights": { "earth": 2, "order": 2 } }
+    ] },
+    { "id": "q09", "options": [
+      { "id": "a", "weights": { "expr": 2, "fire": 1 } },
+      { "id": "b", "weights": { "water": 2, "air": 1 } }
+    ] },
+    { "id": "q10", "options": [
+      { "id": "a", "weights": { "fire": 1, "air": 1 } },
+      { "id": "b", "weights": { "earth": 2, "order": 3 } }
+    ] },
+    { "id": "q11", "options": [
+      { "id": "a", "weights": { "water": 1, "fire": 1 } },
+      { "id": "b", "weights": { "earth": 1, "air": 1, "order": 2 } }
+    ] },
+    { "id": "q12", "options": [
+      { "id": "a", "weights": { "air": 2, "fire": 1 } },
+      { "id": "b", "weights": { "earth": 2, "order": 2 } }
+    ] },
+    { "id": "q13", "options": [
+      { "id": "a", "weights": { "expr": 2, "water": 1, "fire": 1 } },
+      { "id": "b", "weights": { "earth": 1 } }
+    ] },
+    { "id": "q14", "options": [
+      { "id": "a", "weights": { "air": 2 } },
+      { "id": "b", "weights": { "earth": 1, "order": 3 } }
+    ] },
+    { "id": "q15", "options": [
+      { "id": "a", "weights": { "fire": 2, "expr": 1 } },
+      { "id": "b", "weights": { "water": 2 } }
+    ] },
+    { "id": "q16", "options": [
+      { "id": "a", "weights": { "air": 1, "fire": 1 } },
+      { "id": "b", "weights": { "order": 3, "earth": 1 } }
+    ] }
+  ]
+}

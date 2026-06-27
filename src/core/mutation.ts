@@ -1,12 +1,14 @@
-// AR-3 异变判定（design/02 §5.3）. Deviation of the measured vector from the
-// age-adjusted baseline; older age lowers the threshold (easier to mutate).
+// AR-3 异变判定（design/02 §5.3, design/05）. Deviation of the measured vector
+// from the age-adjusted baseline; older age lowers the threshold.
 import type { Config, Dim, MutationLevel, MutationResult, PersonalityVector } from './types'
 import { DIMS } from './types'
 import { alphaForBand } from './age'
 import { distance } from './vector'
 
+const DRIVER_COUNT = 2
+
 /** τ(age) = tauBase − beta·α(age). */
-export function tauFor(ageBand: number, config: Config): number {
+export function tauForBand(ageBand: number, config: Config): number {
   return config.mutation.tauBase - config.mutation.beta * alphaForBand(ageBand, config)
 }
 
@@ -22,10 +24,10 @@ export function detectMutation(
   config: Config,
 ): MutationResult {
   const deviation = distance(v, effBaseline)
-  const tau = tauFor(ageBand, config)
+  const tau = tauForBand(ageBand, config)
   const isMutated = deviation > tau
 
-  const [o1, o2] = config.mutation.levelOffsets
+  const [o1, o2] = config.mutation.levels
   let level: MutationLevel = 0
   if (isMutated) {
     if (deviation >= tau + o2) level = 3
@@ -33,6 +35,6 @@ export function detectMutation(
     else level = 1
   }
 
-  const drivers = deviationDrivers(v, effBaseline).slice(0, config.mutation.driverCount)
+  const drivers = deviationDrivers(v, effBaseline).slice(0, DRIVER_COUNT)
   return { isMutated, deviation, tau, level, drivers }
 }

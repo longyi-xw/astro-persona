@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { compatMatrix, config, neutral, signById, signText, signs, type Locale } from '~/data'
+import { getCompatMatrix, getConfig, getNeutral, getSignContent, getSignProfile, getSignProfiles, type Locale } from '~/content'
 import { effectiveBaseline } from '~/core/age'
 import { detectMutation } from '~/core/mutation'
 import { rankMatches } from '~/core/matching'
-import { decodeResult } from '~/utils/resultCodec'
 import { narrative } from '~/narrative'
+import type { MatchResult, PersonalityVector } from '~/core/types'
+import { decodeResult } from '~/utils/resultCodec'
 import { ELEMENT_COLOR, textGlyph } from '~/utils/theme'
-import type { PersonalityVector } from '~/core/types'
 
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
@@ -33,54 +33,55 @@ const userState = computed(() => (typeof route.query.s === 'string' ? decodeResu
 const mutated = computed(() => {
   const u = userState.value
   if (!u) return false
-  const p = signById(u.sign)
+  const p = getSignProfile(u.sign)
   if (!p) return false
-  const eff = effectiveBaseline(p.baseline, neutral, u.ageBand, config)
-  return detectMutation(u.v, eff, u.ageBand, config).isMutated
+  const config = getConfig()
+  return detectMutation(u.v, effectiveBaseline(p.baseline, getNeutral(), u.ageBand, config), u.ageBand, config).isMutated
 })
 
-const results = computed(() =>
+const results = computed<MatchResult[]>(() =>
   userState.value
-    ? rankMatches(userState.value.sign, userState.value.v, signs, config, {
-        matrix: compatMatrix,
+    ? rankMatches(userState.value.sign, userState.value.v, getSignProfiles(), getConfig(), {
+        compat: getCompatMatrix(),
         ideal: ideal.value,
         mutated: mutated.value,
       })
     : [],
 )
 
-const reasons = computed(() => {
-  const u = userState.value
-  if (!u) return []
-  return narrative.matchReasons({
-    locale: locale.value as Locale,
-    vector: u.v,
-    sign: u.sign,
-    match: results.value.map((r) => ({
-      sign: r.sign,
-      relation: r.explain.relation,
-      similarDims: r.explain.similarDims,
-      complementDims: r.explain.complementDims,
-      idealFit: r.explain.idealFit,
-    })),
-  })
-})
+const reasons = computed(() =>
+  userState.value
+    ? narrative.matchReasons({
+        locale: locale.value as Locale,
+        vector: userState.value.v,
+        sign: userState.value.sign,
+        match: results.value.map((r) => ({
+          sign: r.sign,
+          sameElement: r.explain.sameElement,
+          element: r.explain.element,
+          similarDims: r.explain.similarDims,
+          complementDims: r.explain.complementDims,
+          idealFit: r.explain.idealFit,
+        })),
+      })
+    : [],
+)
 
 const cards = computed(() =>
   results.value.map((r, i) => {
-    const p = signById(r.sign)
+    const p = getSignProfile(r.sign)
     return {
       id: r.sign,
       glyph: textGlyph(p?.glyph ?? ''),
       color: p ? ELEMENT_COLOR[p.element] : '#C9A24B',
-      name: signText(locale.value as Locale, r.sign)?.name ?? r.sign,
-      alt: signText(locale.value === 'zh' ? 'en' : 'zh', r.sign)?.name ?? '',
+      name: getSignContent(locale.value as Locale, r.sign)?.name ?? r.sign,
+      alt: getSignContent(locale.value === 'zh' ? 'en' : 'zh', r.sign)?.name ?? '',
       pct: Math.round(r.score * 100),
       reason: reasons.value[i] ?? '',
     }
   }),
 )
-const bestBaseline = computed(() => (results.value[0] ? signById(results.value[0].sign)?.baseline ?? null : null))
+const bestBaseline = computed(() => (results.value[0] ? getSignProfile(results.value[0].sign)?.baseline ?? null : null))
 
 useSeoMeta({ title: () => `${t('matchResult.title')} · ${t('brand')}` })
 </script>

@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { compatMatrix, signById, signText, signs, type Locale } from '~/data'
-import { ELEMENT_COLOR, textGlyph } from '~/utils/theme'
+import { getCompat, getSignContent, getSignProfile, getSignProfiles, type Locale } from '~/content'
+import { ELEMENT_COLOR, formatDateRange, textGlyph } from '~/utils/theme'
 
 const route = useRoute()
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
 const id = String(route.params.sign)
-const profile = signById(id)
+const profile = getSignProfile(id)
 if (!profile) throw createError({ statusCode: 404, statusMessage: 'Sign not found' })
 
 const color = ELEMENT_COLOR[profile.element]
-const text = computed(() => signText(locale.value as Locale, id))
-const altName = computed(() => signText(locale.value === 'zh' ? 'en' : 'zh', id)?.name ?? '')
+const content = computed(() => getSignContent(locale.value as Locale, id))
+const altName = computed(() => getSignContent(locale.value === 'zh' ? 'en' : 'zh', id)?.name ?? '')
 
-const ranked = signs
+const ranked = getSignProfiles()
   .filter((s) => s.id !== id)
-  .map((s) => ({ id: s.id, score: compatMatrix[id]?.[s.id] ?? 0.55 }))
+  .map((s) => ({ id: s.id, score: getCompat(id, s.id) }))
   .sort((a, b) => b.score - a.score)
-const names = (list: { id: string }[]) => list.map((x) => signText(locale.value as Locale, x.id)?.name ?? x.id).join(' ')
+const names = (list: { id: string }[]) => list.map((x) => getSignContent(locale.value as Locale, x.id)?.name ?? x.id).join(' ')
 const compat = computed(() => ({
   high: names(ranked.slice(0, 3)),
   mid: names(ranked.slice(3, 5)),
@@ -26,13 +26,13 @@ const compat = computed(() => ({
 }))
 
 useSeoMeta({
-  title: () => `${text.value?.name} ${altName.value} · ${t('brand')}`,
-  description: () => text.value?.sketch?.[0] ?? '',
+  title: () => `${content.value?.name} ${altName.value} · ${t('brand')}`,
+  description: () => content.value?.summary ?? '',
 })
 </script>
 
 <template>
-  <article v-if="profile && text" class="max-w-2xl mx-auto px-0 sm:px-6 py-8">
+  <article v-if="profile && content" class="max-w-2xl mx-auto px-0 sm:px-6 py-8">
     <div class="panel">
       <!-- header / archive -->
       <header class="relative px-7 pt-8 pb-7 border-b border-[rgba(201,162,75,0.12)]" :style="{ background: `linear-gradient(160deg, ${color}29, rgba(14,21,48,0) 60%)` }">
@@ -41,45 +41,70 @@ useSeoMeta({
             <div class="font-mono text-[11px] tracking-[0.18em] uppercase" :style="{ color }">
               {{ t('elementNames.' + profile.element) }} · {{ t('modality.' + profile.modality) }}
             </div>
-            <h1 class="mt-3.5 mb-0 font-serif-sc font-600 text-[40px] leading-none">{{ text.name }}</h1>
+            <h1 class="mt-3.5 mb-0 font-serif-sc font-600 text-[40px] leading-none">{{ content.name }}</h1>
             <p class="mt-1 font-serif-latin italic text-[26px] text-[#d7ccae]">{{ altName }}</p>
+            <p class="mt-2 text-[13px] text-muted">{{ content.tagline }}</p>
           </div>
           <span class="font-symbol text-[62px] leading-none" :style="{ color, filter: `drop-shadow(0 0 18px ${color}66)` }">{{ textGlyph(profile.glyph) }}</span>
         </div>
         <dl class="grid grid-cols-2 gap-x-5 gap-y-2 mt-6 font-mono text-[11.5px] text-muted">
-          <div class="flex justify-between border-b border-dotted border-[rgba(255,255,255,0.12)] pb-1.5"><dt class="text-faint">{{ t('signDetail.dates') }}</dt><dd class="m-0">{{ profile.dates.from }}–{{ profile.dates.to }}</dd></div>
-          <div class="flex justify-between border-b border-dotted border-[rgba(255,255,255,0.12)] pb-1.5"><dt class="text-faint">{{ t('signDetail.ruler') }}</dt><dd class="m-0">{{ t('rulers.' + profile.ruler) }}</dd></div>
+          <div class="flex justify-between border-b border-dotted border-[rgba(255,255,255,0.12)] pb-1.5"><dt class="text-faint">{{ t('signDetail.dates') }}</dt><dd class="m-0">{{ formatDateRange(profile.dateRange) }}</dd></div>
+          <div class="flex justify-between border-b border-dotted border-[rgba(255,255,255,0.12)] pb-1.5"><dt class="text-faint">{{ t('signDetail.ruler') }}</dt><dd class="m-0">{{ content.rulingBody }}</dd></div>
           <div class="flex justify-between border-b border-dotted border-[rgba(255,255,255,0.12)] pb-1.5"><dt class="text-faint">{{ t('signDetail.element') }}</dt><dd class="m-0" :style="{ color }">{{ t('elements.' + profile.element) }}</dd></div>
           <div class="flex justify-between border-b border-dotted border-[rgba(255,255,255,0.12)] pb-1.5"><dt class="text-faint">{{ t('signDetail.mode') }}</dt><dd class="m-0">{{ t('modality.' + profile.modality) }}</dd></div>
         </dl>
       </header>
 
-      <!-- sketch -->
+      <!-- summary -->
       <section class="px-7 pt-6">
         <div class="eyebrow">{{ t('signDetail.sketch') }}</div>
-        <p v-for="(para, i) in text.sketch" :key="i" class="mt-3 text-[14.5px] leading-[1.8] text-[#cfd4ea]">{{ para }}</p>
+        <p class="mt-3 text-[14.5px] leading-[1.8] text-[#cfd4ea]">{{ content.summary }}</p>
+      </section>
+
+      <!-- strengths / weaknesses -->
+      <section class="grid grid-cols-2 gap-3.5 px-7 pt-5">
+        <div>
+          <div class="font-mono text-[11px] tracking-[0.14em] text-earth uppercase mb-2">{{ t('signDetail.strengths') }}</div>
+          <ul class="m-0 pl-0 list-none flex flex-col gap-1.5">
+            <li v-for="s in content.strengths" :key="s" class="text-[13px] text-[#cfd4ea] flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-earth flex-none" />{{ s }}</li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-mono text-[11px] tracking-[0.14em] text-fire uppercase mb-2">{{ t('signDetail.weaknesses') }}</div>
+          <ul class="m-0 pl-0 list-none flex flex-col gap-1.5">
+            <li v-for="w in content.weaknesses" :key="w" class="text-[13px] text-muted flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-fire flex-none" />{{ w }}</li>
+          </ul>
+        </div>
       </section>
 
       <!-- baseline compass -->
       <section class="m-7 p-5 card-inset">
         <div class="flex items-center justify-between mb-1.5">
           <span class="font-mono text-[11px] tracking-[0.14em] text-gold">{{ t('signDetail.baseline') }}</span>
-          <span class="font-mono text-[10.5px] text-faint">{{ t('signDetail.baselineNote', { name: text.name }) }}</span>
+          <span class="font-mono text-[10.5px] text-faint">{{ t('signDetail.baselineNote', { name: content.name }) }}</span>
         </div>
         <div class="flex justify-center py-1.5">
           <div class="w-[230px] h-[230px]"><EnergyCompass :vector="profile.baseline" :size="230" :accent="color" show-labels /></div>
         </div>
       </section>
 
-      <!-- love / work -->
+      <!-- love / career -->
       <section class="grid grid-cols-2 gap-3.5 px-7">
         <div>
           <div class="font-serif-sc text-[15px]">{{ t('signDetail.love') }}</div>
-          <p class="mt-2 text-[12.5px] leading-[1.7] text-muted">{{ text.love }}</p>
+          <p class="mt-2 text-[12.5px] leading-[1.7] text-muted">{{ content.love }}</p>
         </div>
         <div>
           <div class="font-serif-sc text-[15px]">{{ t('signDetail.work') }}</div>
-          <p class="mt-2 text-[12.5px] leading-[1.7] text-muted">{{ text.work }}</p>
+          <p class="mt-2 text-[12.5px] leading-[1.7] text-muted">{{ content.career }}</p>
+        </div>
+      </section>
+
+      <!-- keywords -->
+      <section class="px-7 pt-5">
+        <div class="eyebrow mb-3">{{ t('signDetail.keywords') }}</div>
+        <div class="flex flex-wrap gap-2">
+          <span v-for="kw in content.keywords" :key="kw" class="px-3 py-1.5 rounded-full text-[12px]" :style="{ background: color + '1f', border: `1px solid ${color}59`, color }">{{ kw }}</span>
         </div>
       </section>
 
@@ -109,7 +134,7 @@ useSeoMeta({
         style="background: linear-gradient(120deg, rgba(201,162,75,0.16), rgba(201,162,75,0.04)); border: 1px solid rgba(201,162,75,0.3)"
       >
         <div>
-          <div class="font-serif-sc text-[16px]">{{ t('signDetail.ctaTitle', { name: text.name }) }}</div>
+          <div class="font-serif-sc text-[16px]">{{ t('signDetail.ctaTitle', { name: content.name }) }}</div>
           <div class="text-[12px] text-muted mt-1">{{ t('signDetail.ctaSub', { name: altName, latin: altName }) }}</div>
         </div>
         <span class="btn-gold text-[13.5px] px-4.5 py-3 whitespace-nowrap">{{ t('signDetail.cta') }}</span>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { signs, signText, type Locale } from '~/data'
-import { ELEMENT_COLOR, textGlyph } from '~/utils/theme'
+import { getSignContent, getSignProfiles, type Locale } from '~/content'
+import { ELEMENT_COLOR, formatDateRange, textGlyph } from '~/utils/theme'
 import type { Element } from '~/core/types'
 
 const { t, locale } = useI18n()
@@ -14,15 +14,15 @@ const groups = computed(() =>
     el,
     color: ELEMENT_COLOR[el],
     label: t(`signsList.groups.${el}`),
-    signs: signs
+    signs: getSignProfiles()
       .filter((s) => s.element === el)
       .map((s) => ({
         id: s.id,
         glyph: textGlyph(s.glyph),
-        dates: `${s.dates.from}–${s.dates.to}`,
-        name: signText(locale.value as Locale, s.id)?.name ?? s.id,
-        alt: signText(other.value, s.id)?.name ?? '',
-        keyword: signText(locale.value as Locale, s.id)?.keyword ?? '',
+        dates: formatDateRange(s.dateRange),
+        name: getSignContent(locale.value as Locale, s.id)?.name ?? s.id,
+        alt: getSignContent(other.value, s.id)?.name ?? '',
+        tagline: getSignContent(locale.value as Locale, s.id)?.tagline ?? '',
       })),
   })),
 )
@@ -57,9 +57,9 @@ useSeoMeta({ title: () => `${t('signsList.title')} · ${t('brand')}`, descriptio
               <span class="font-serif-sc text-[16px]">{{ s.name }}</span>
               <span class="font-serif-latin italic text-[14px] text-muted">{{ s.alt }}</span>
             </div>
-            <div class="text-[11.5px] text-[#8089b0] mt-0.5">{{ s.keyword }}</div>
+            <div class="text-[11.5px] text-[#8089b0] mt-0.5 truncate">{{ s.tagline }}</div>
           </div>
-          <span class="font-mono text-[10.5px] text-faint">{{ s.dates }}</span>
+          <span class="font-mono text-[10.5px] text-faint flex-none">{{ s.dates }}</span>
         </NuxtLink>
       </div>
     </section>

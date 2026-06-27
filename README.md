@@ -25,26 +25,26 @@ dashed reference) and respects `prefers-reduced-motion`.
 
 ## Architecture — three iron rules
 
-1. **Algorithms are pure functions** (`src/core/*`) — no framework/DOM/content imports; all data is injected as parameters; locked by Vitest. The data layer (`src/data`) bridges content JSON into the core.
+1. **Algorithms are pure functions** (`src/core/*`) — no framework/DOM/content imports; all data is injected as parameters; locked by Vitest. The single content entry (`src/content`, **zod-validated on load**) injects it; core & components never import `content/*.json` directly.
 2. **Content / copy / weights are external** (`content/*`) — zh/en paired by stable `id`; algorithms know only `id`. UI chrome lives in `src/locales`; domain copy in `content/copy` is produced through `src/narrative`.
 3. **No backend, no secrets in the frontend** — results reproduce from the URL. The LLM narrative is interface-only (`VITE_USE_LLM`), degrading to the template provider.
 
 ```
-content/            版本化内容与配置（非工程可改）
-  signs/            profiles.json (vectors) + zh/en.json (display)
-  questions/        weights.json + zh/en.json
-  copy/             zh/en.json — archetypes, keywords, mutation & match copy
-  config/           weights.json (tunable) + compat-matrix.json (generated)
+content/            版本化内容与配置（zod 校验，非工程可改）
+  signs/            profiles.json (元素/三态/守护/日期/baseline) + zh/en.json (展示)
+  questions/        items.json (16 题权重) + zh/en.json (题面)
+  copy/             zh/en.json — 原型名 · 关键词 · 异变激励语(多变体) · 匹配解释
+  config/           weights.json (年龄α/异变阈值/匹配权重) + compat-matrix.json (生成)
 src/
-  core/             纯函数：personality · age · mutation · matching · types · vector
+  core/             纯函数 + content.schema(zod)：personality · age · mutation · matching
+  content/          唯一数据入口：校验 + 派生量缓存(maxScores/neutral) + 强类型 getter
   narrative/        NarrativeProvider 接口 + Template(启用) + LLM(stub) + 工厂
-  data/             content → typed; compat matrix + neutral baseline
   components/        EnergyCompass · ShareCard
   composables/       useShareCard
   stores/            session (Pinia)
   pages/             index · signs/ · test · result · match
   locales/           zh.ts · en.ts (UI chrome)
-tests/              Vitest：算法 + 校准 + 文案 + 组件 + 编解码
+tests/              Vitest：算法 + 校准 + 文案 + 组件 + 编解码 + 内容校验 + 端到端
 ```
 
 ## Commands
@@ -62,10 +62,11 @@ pnpm check        # lint + typecheck + test (run before committing)
 
 ## Calibration
 
-`content/config/weights.json` holds the tunable parameters (age α, mutation `tauBase`/`beta`,
-match weights). Editing it is **calibration** — `tests/calibration.test.ts` asserts the
-synthetic-population mutation rate stays in **15–30%**, rises with age, and never collapses.
-Current calibration lands ~18% overall (per-band ≈ 11/13/14/21/30%). Rerun `pnpm test` after any change.
+`content/config/weights.json` holds the tunable parameters (age α breakpoints, mutation `tauBase`/`beta`,
+match weights). Editing it is **calibration** — `tests/calibration.test.ts` builds an N≥2000 synthetic
+population and asserts the mutation rate stays in **15–30%**, rises with age, and never collapses.
+Current calibration (`tauBase 0.36, beta 0.16`) lands ~19% overall (per-band ≈ 16/16/18/20/25%). The regression
+lock `maxScores {17,18,17,14,11,23}` / `neutral {.53,.49,.55,.52,.58,.53}` guards against content drift. Rerun `pnpm test` after any change.
 
 ## Deploy — Cloudflare Pages
 

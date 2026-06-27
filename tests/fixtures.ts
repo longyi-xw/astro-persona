@@ -1,21 +1,30 @@
-// Load the real version-controlled content as typed fixtures, so tests run
-// against the same data the app ships (not toy data).
-import type { Config, Question, SignProfile } from '~/core/types'
-import profilesJson from '~~/content/signs/profiles.json'
-import weightsJson from '~~/content/questions/weights.json'
-import configJson from '~~/content/config/weights.json'
+// Typed fixtures sourced through the single content entry (src/content), so
+// tests run against the same validated data the app ships.
+import type { SignProfile } from '~/core/types'
+import {
+  getCompatMatrix,
+  getConfig,
+  getMaxScores,
+  getNeutral,
+  getQuestionItems,
+  getSignProfile,
+  getSignProfiles,
+} from '~/content'
 
-export const signs = profilesJson.signs as unknown as SignProfile[]
-export const questions = weightsJson.questions as unknown as Question[]
-export const config = configJson as unknown as Config
+export const signs = getSignProfiles()
+export const items = getQuestionItems()
+export const config = getConfig()
+export const compat = getCompatMatrix()
+export const maxScores = getMaxScores()
+export const neutral = getNeutral()
 
 export const signById = (id: string): SignProfile => {
-  const s = signs.find((x) => x.id === id)
+  const s = getSignProfile(id)
   if (!s) throw new Error(`sign not found: ${id}`)
   return s
 }
 
-/** Tiny deterministic PRNG (LCG) for reproducible synthetic populations. */
+/** Deterministic LCG for reproducible synthetic populations. */
 export function makeRng(seed: number): () => number {
   let s = seed >>> 0
   return () => {

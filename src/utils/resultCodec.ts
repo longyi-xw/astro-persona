@@ -2,7 +2,9 @@
 // Binary packing keeps share URLs short; opening the link reproduces the result.
 import type { Dim, MutationLevel, PersonalityVector, ResultState } from '~/core/types'
 import { DIMS } from '~/core/types'
-import { signIds } from '~/data'
+import { getSignIds } from '~/content'
+
+const signIds = getSignIds()
 
 const VERSION = 1
 const toByte = (x: number) => Math.max(0, Math.min(255, Math.round(x * 255)))

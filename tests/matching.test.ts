@@ -1,66 +1,45 @@
 import { describe, expect, it } from 'vitest'
-import { buildCompatMatrix, elementRelation, rankMatches } from '~/core/matching'
-import type { PersonalityVector } from '~/core/types'
-import { config, signById, signs } from './fixtures'
+import { rankMatches } from '~/core/matching'
+import type { MatchResult, PersonalityVector } from '~/core/types'
+import { compat, config, signById, signs } from './fixtures'
 
-const matrix = buildCompatMatrix(signs)
-
-describe('elementRelation / buildCompatMatrix', () => {
-  it('scores same element highest and squares lowest (matches prototype Aries compat)', () => {
-    expect(matrix.aries!.leo).toBe(0.85) // same fire
-    expect(matrix.aries!.sagittarius).toBe(0.85) // same fire
-    expect(matrix.aries!.gemini).toBe(0.75) // complementary air
-    expect(matrix.aries!.libra).toBe(0.6) // opposition (180°)
-    expect(matrix.aries!.cancer).toBe(0.45) // square (90°) — prototype "低"
-    expect(matrix.aries!.capricorn).toBe(0.45) // square (90°) — prototype "低"
-  })
-
-  it('classifies aspects between non-element-related signs', () => {
-    expect(elementRelation(signById('aries'), signById('cancer'))).toBe('square') // 90°
-    expect(elementRelation(signById('aries'), signById('libra'))).toBe('opposition') // 180°
-    expect(elementRelation(signById('taurus'), signById('cancer'))).toBe('sextile') // 60°, earth-water
-  })
-
-  it('is symmetric', () => {
-    for (const a of signs) for (const b of signs) expect(matrix[a.id]![b.id]).toBe(matrix[b.id]![a.id])
-  })
-})
-
-const fireUser: PersonalityVector = { fire: 0.86, earth: 0.32, air: 0.66, water: 0.28, expr: 0.74, order: 0.38 }
+const aries = signById('aries').baseline
 
 describe('rankMatches', () => {
-  it('never recommends the user’s own sign and respects topN', () => {
-    const r = rankMatches('aries', fireUser, signs, config, { matrix })
+  it('never recommends the user’s own sign, respects topN, sorts descending', () => {
+    const r = rankMatches('aries', aries, signs, config, { compat })
     expect(r.some((m) => m.sign === 'aries')).toBe(false)
-    expect(r.length).toBeLessThanOrEqual(config.match.topN)
     expect(r.length).toBeGreaterThan(0)
-  })
-
-  it('sorts by descending score', () => {
-    const r = rankMatches('aries', fireUser, signs, config, { matrix })
+    expect(r.length).toBeLessThanOrEqual(5)
     for (let i = 1; i < r.length; i++) expect(r[i - 1]!.score).toBeGreaterThanOrEqual(r[i]!.score)
   })
 
-  it('only attaches idealFit when an ideal vector is supplied', () => {
-    const without = rankMatches('aries', fireUser, signs, config, { matrix })
-    expect(without[0]!.ideal).toBeUndefined()
-
-    const ideal: PersonalityVector = { fire: 0.8, earth: 0.3, air: 0.7, water: 0.3, expr: 0.7, order: 0.35 }
-    const withIdeal = rankMatches('aries', fireUser, signs, config, { matrix, ideal })
+  it('attaches idealFit only when an ideal vector is supplied', () => {
+    expect(rankMatches('aries', aries, signs, config, { compat })[0]!.ideal).toBeUndefined()
+    const withIdeal = rankMatches('aries', aries, signs, config, { compat, ideal: signById('leo').baseline })
     expect(withIdeal[0]!.ideal).toBeGreaterThanOrEqual(0)
   })
 
-  it('mutation reweighting lifts a personality-aligned but low-base-compat sign', () => {
-    // Make the user’s personality identical to Cancer’s baseline (square → low base).
-    const cancer = signById('cancer')
-    const rankOf = (sign: string, results: ReturnType<typeof rankMatches>) =>
-      results.findIndex((m) => m.sign === sign)
+  it('flags same-element candidates in the explanation', () => {
+    const r = rankMatches('aries', aries, signs, config, { compat, topN: 12 })
+    expect(r.find((m) => m.sign === 'leo')?.explain.sameElement).toBe(true)
+    expect(r.find((m) => m.sign === 'taurus')?.explain.sameElement).toBe(false)
+  })
 
-    const normal = rankMatches('aries', cancer.baseline, signs, config, { matrix, mutated: false })
-    const mutated = rankMatches('aries', cancer.baseline, signs, config, { matrix, mutated: true })
-
-    // Weakening the sign / strengthening personality should not push Cancer down,
-    // and should raise its raw score share from personality.
+  it('mutation reweighting does not push a personality-aligned, low-base sign down', () => {
+    const cancer = signById('cancer') // aries-cancer = square (low base compat)
+    const rankOf = (sign: string, rs: MatchResult[]) => rs.findIndex((m) => m.sign === sign)
+    const normal = rankMatches('aries', cancer.baseline, signs, config, { compat, mutated: false, topN: 12 })
+    const mutated = rankMatches('aries', cancer.baseline, signs, config, { compat, mutated: true, topN: 12 })
     expect(rankOf('cancer', mutated)).toBeLessThanOrEqual(rankOf('cancer', normal))
+  })
+})
+
+describe('match direction', () => {
+  it('ranks a same-element high-compat sign above a square watery one for a fire user', () => {
+    const user: PersonalityVector = { fire: 0.9, earth: 0.3, air: 0.5, water: 0.2, expr: 0.8, order: 0.35 }
+    const r = rankMatches('aries', user, signs, config, { compat, topN: 12 })
+    const scoreOf = (id: string) => r.find((m) => m.sign === id)?.score ?? 0
+    expect(scoreOf('sagittarius')).toBeGreaterThan(scoreOf('cancer'))
   })
 })

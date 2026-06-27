@@ -1,12 +1,12 @@
-// 文案 Provider 接口（design/02 §8）. Business code depends only on this; the
-// template impl is enabled this period, an LLM impl can be swapped in later
-// with zero caller changes.
-import type { Dim, ElementRelation, MutationLevel, PersonalityVector } from '~/core/types'
-import type { Locale } from '~/data'
+// 文案 Provider 接口（design/02 §8, design/05 §C0）. Business code depends only on
+// this; the template impl is enabled, an LLM impl can be swapped in later.
+import type { Dim, Element, MutationLevel, PersonalityVector } from '~/core/types'
+import type { Locale } from '~/content'
 
 export interface NarrativeMatchItem {
   sign: string
-  relation: ElementRelation
+  sameElement: boolean
+  element: Element
   similarDims: Dim[]
   complementDims: Dim[]
   idealFit?: number
@@ -23,16 +23,15 @@ export interface NarrativeContext {
 }
 
 export interface Archetype {
-  name: string
-  latin: string
+  name: string // localized
+  latin: string // English (for the bilingual subtitle)
+  blurb: string
 }
 
 export interface NarrativeProvider {
-  // deterministic, structured getters
   archetype(ctx: NarrativeContext): Archetype
   keywords(ctx: NarrativeContext): string[]
   matchReasons(ctx: NarrativeContext): string[]
-  // generated prose (async to mirror a future LLM call)
   personalityCopy(ctx: NarrativeContext): Promise<string>
   mutationCopy(ctx: NarrativeContext): Promise<string>
   matchCopy(ctx: NarrativeContext): Promise<string>

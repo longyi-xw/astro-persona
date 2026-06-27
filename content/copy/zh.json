@@ -1,43 +1,66 @@
 {
-  "_comment": "领域文案，供 TemplateNarrativeProvider 查表拼装。占位符：{sign} 星座名、{dims} 维度标签、{dominant}/{missing} 维度、{relation} 关系、{factors}/{ideal} 匹配因子。",
-  "archetypes": {
-    "fire": { "name": "炽焰先锋", "latin": "The Ember Vanguard" },
-    "earth": { "name": "磐石筑梦人", "latin": "The Bedrock Builder" },
-    "air": { "name": "长风思辨者", "latin": "The Gale Thinker" },
-    "water": { "name": "潮汐织梦者", "latin": "The Tide Weaver" }
-  },
+  "version": "1.0.0",
+  "locale": "zh",
+  "_comment": "冷峻·诊断仪 × 燃 × 宿命。原型名按 top-1/top-2 主导维匹配；mutation 每档多条变体，由向量确定性选取（同结果稳定、跨人多变）。占位符：{sign} {dominant} {missing} {element} {dim} {dimU} {dimB}。",
   "dims": { "fire": "火", "earth": "土", "air": "风", "water": "水", "expr": "显", "order": "序" },
-  "dimsFull": { "fire": "火·行动", "earth": "土·务实", "air": "风·思辨", "water": "水·共情", "expr": "外显", "order": "守序" },
+  "archetypes": [
+    { "id": "fire_expr", "primary": "fire", "secondary": "expr", "name": "燃核推进", "blurb": "一念既起，轨道已被点燃。" },
+    { "id": "fire_air", "primary": "fire", "secondary": "air", "name": "流火脉冲", "blurb": "火星四溅，思维与冲劲同频。" },
+    { "id": "fire_order", "primary": "fire", "secondary": "order", "name": "定向烈锋", "blurb": "把冲劲锻成制导，直取目标。" },
+    { "id": "fire", "primary": "fire", "name": "炽核", "blurb": "核心一直在燃，从不熄火。" },
+    { "id": "earth_order", "primary": "earth", "secondary": "order", "name": "磐石基座", "blurb": "一砖一瓦，把时间垒成定数。" },
+    { "id": "earth_water", "primary": "earth", "secondary": "water", "name": "沃土稳流", "blurb": "稳到深处，是温柔的根系。" },
+    { "id": "earth", "primary": "earth", "name": "承重核", "blurb": "万钧压顶，他纹丝不动。" },
+    { "id": "air_expr", "primary": "air", "secondary": "expr", "name": "疾风信号", "blurb": "思维先行，信号即刻发射。" },
+    { "id": "air_order", "primary": "air", "secondary": "order", "name": "缜思矩阵", "blurb": "用清醒的逻辑，给想象布阵。" },
+    { "id": "air", "primary": "air", "name": "长风频段", "blurb": "永远在接收下一个频率。" },
+    { "id": "water_expr", "primary": "water", "secondary": "expr", "name": "潮汐织网", "blurb": "把感受织成会发光的网。" },
+    { "id": "water_order", "primary": "water", "secondary": "order", "name": "稳压深流", "blurb": "情绪再汹涌，读数始终稳。" },
+    { "id": "water", "primary": "water", "name": "静默深渊", "blurb": "表面无波，底下是整片海。" },
+    { "id": "expr_fire", "primary": "expr", "secondary": "fire", "name": "聚光燃点", "blurb": "站到光里，瞬间引燃全场。" },
+    { "id": "expr", "primary": "expr", "name": "显影核", "blurb": "在场，就是他的存在方式。" },
+    { "id": "order_earth", "primary": "order", "secondary": "earth", "name": "秩序基准", "blurb": "万物归位，他才校准为零。" },
+    { "id": "order", "primary": "order", "name": "校准者", "blurb": "对偏差零容忍，对自己也是。" }
+  ],
   "keywords": {
-    "fire": ["主动", "热望", "不安分"],
-    "earth": ["笃定", "秩序", "耐性"],
-    "air": ["思辨", "灵动", "求新"],
-    "water": ["共情", "直觉", "深流"],
-    "expr": ["外显", "表达", "在场"],
-    "order": ["条理", "克制", "守序"]
+    "fire": { "high": ["炽烈", "果决", "推进"], "low": ["温吞", "迟疑"] },
+    "earth": { "high": ["稳固", "务实", "承重"], "low": ["飘忽", "松动"] },
+    "air": { "high": ["敏捷", "思辨", "求新"], "low": ["迟钝", "守旧"] },
+    "water": { "high": ["深感", "直觉", "共情"], "low": ["疏离", "冷感"] },
+    "expr": { "high": ["外放", "在场", "表达"], "low": ["内敛", "隐没"] },
+    "order": { "high": ["秩序", "克制", "精准"], "low": ["随性", "失序"] }
   },
   "mutationLabel": { "0": "典型", "1": "微异", "2": "显异", "3": "极异" },
   "mutation": {
-    "0": "你的人格与{sign}的基线高度贴合——星座这次说对了。",
-    "1": "你与{sign}基线开始出现裂隙：{dims}已经不太像剧本里的样子。",
-    "2": "你已经走出了星座给的剧本。这一切，都是你一路经历换来的。",
-    "3": "你几乎重写了{sign}：你的人格不再由星座定义，而由你走过的路定义。"
+    "typical": [
+      "读数吻合：你与{sign}的基线几乎重合。星图这一次，说中了你。",
+      "校准完成：你仍走在{sign}写好的轨道上——它认得你，你也认得它。"
+    ],
+    "micro": [
+      "检测到微偏：大体仍是{sign}，但有几处棱角，星图已经算不准了——那是你自己磨出来的。",
+      "轨迹出现细纹：你没离开{sign}，只是开始在它的边界上，刻下自己的读数。",
+      "偏差在阈值边缘游走——{sign}还握着你大半，但有一小块，已经只听你的。"
+    ],
+    "notable": [
+      "显著偏离：你已经走出{sign}写好的剧本。这条岔路不是误差，是你用脚走出来的命数。",
+      "读数确认：星座给的轨道，你早已不在上面。星图认输了，因为你走得比它敢。",
+      "偏移已成定局：{sign}是你的起点，不是你的判词。剩下的路，你自己点的火。"
+    ],
+    "extreme": [
+      "极端偏离：你几乎重写了{sign}。星图在你面前失效——你是谁，由你走过的每一步定数。",
+      "读数越界：这已经不是{sign}，是你。命数没有抛弃你，是你夺过了笔。",
+      "基线归零：星座再也框不住你。你燃成了自己的坐标——这一切，都是你一路烧出来的。"
+    ]
   },
-  "relation": {
-    "same": "同象同频",
-    "sextile": "异象互补",
-    "square": "张力相激",
-    "opposition": "两极相吸",
-    "neutral": "各有其道"
+  "matchReasons": {
+    "lead": "读数对齐——",
+    "sameElement": "{element}象同频，轨道天然咬合",
+    "complement": "「{dim}」上你强他弱，正好互补",
+    "similar": "你们在「{dim}」上读数一致",
+    "ideal": "与你设定的理想型高度吻合",
+    "base": "综合读数偏高，值得一探",
+    "sep": "；"
   },
-  "connectors": {
-    "similar": "在{dims}上同频",
-    "complement": "在{dims}上互补",
-    "and": "、",
-    "idealHigh": "，且与你的理想型高度契合",
-    "idealMid": "，与理想型契合中等",
-    "listSep": "，"
-  },
-  "personality": "{archetype}：你由{dominant}主导，{missing}相对沉默——结论来自维度得分，而非泛泛而谈。",
-  "matchSummary": "把你的真实人格摊开看，这几位最接得住你。"
+  "personality": "{archetype}：主导维是{dominant}，{missing}几乎沉默——这是数据读出的你，不是泛泛而谈。",
+  "matchSummary": "把你的真实人格摊到台面上，这几位的读数最接得住你。"
 }
