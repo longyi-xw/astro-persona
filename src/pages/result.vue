@@ -108,7 +108,7 @@ useSeoMeta({ title: () => `${archetype.value?.name ?? t('result.eyebrow')} · ${
             <span class="font-mono text-[9.5px] w-[58px] text-[#8089b0] text-right">{{ i === 0 ? t('result.lead') : i === scores.length - 1 ? t('result.gap') : '' }}</span>
           </div>
         </div>
-        <p class="mt-4 pt-3.5 border-t border-dotted border-[rgba(255,255,255,0.12)] text-[12px] text-muted leading-[1.6]">{{ personality }}</p>
+        <p class="mt-4 pt-3.5 border-t border-[rgba(255,255,255,0.12)] text-[12px] text-muted leading-[1.6]">{{ personality }}</p>
       </div>
 
       <div class="flex flex-wrap gap-2 px-6 pt-5">

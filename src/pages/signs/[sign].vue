@@ -48,10 +48,10 @@ useSeoMeta({
           <span class="font-symbol text-[62px] leading-none" :style="{ color, filter: `drop-shadow(0 0 18px ${color}66)` }">{{ textGlyph(profile.glyph) }}</span>
         </div>
         <dl class="grid grid-cols-2 gap-x-5 gap-y-3 mt-6 font-mono text-[11.5px]">
-          <div class="flex items-baseline justify-between gap-2"><dt class="text-faint">{{ t('signDetail.dates') }}</dt><dd class="m-0 text-muted border-b border-dotted border-[rgba(201,162,75,0.35)] pb-0.5">{{ formatDateRange(profile.dateRange) }}</dd></div>
-          <div class="flex items-baseline justify-between gap-2"><dt class="text-faint">{{ t('signDetail.ruler') }}</dt><dd class="m-0 text-muted border-b border-dotted border-[rgba(201,162,75,0.35)] pb-0.5">{{ content.rulingBody }}</dd></div>
-          <div class="flex items-baseline justify-between gap-2"><dt class="text-faint">{{ t('signDetail.element') }}</dt><dd class="m-0 border-b border-dotted pb-0.5" :style="{ color, borderColor: color + '88' }">{{ t('elements.' + profile.element) }}</dd></div>
-          <div class="flex items-baseline justify-between gap-2"><dt class="text-faint">{{ t('signDetail.mode') }}</dt><dd class="m-0 text-muted border-b border-dotted border-[rgba(201,162,75,0.35)] pb-0.5">{{ t('modality.' + profile.modality) }}</dd></div>
+          <div class="flex items-baseline justify-between gap-2"><dt class="text-faint">{{ t('signDetail.dates') }}</dt><dd class="m-0 text-muted border-b border-[rgba(201,162,75,0.35)] pb-0.5">{{ formatDateRange(profile.dateRange) }}</dd></div>
+          <div class="flex items-baseline justify-between gap-2"><dt class="text-faint">{{ t('signDetail.ruler') }}</dt><dd class="m-0 text-muted border-b border-[rgba(201,162,75,0.35)] pb-0.5">{{ content.rulingBody }}</dd></div>
+          <div class="flex items-baseline justify-between gap-2"><dt class="text-faint">{{ t('signDetail.element') }}</dt><dd class="m-0 border-b pb-0.5" :style="{ color, borderColor: color + '88' }">{{ t('elements.' + profile.element) }}</dd></div>
+          <div class="flex items-baseline justify-between gap-2"><dt class="text-faint">{{ t('signDetail.mode') }}</dt><dd class="m-0 text-muted border-b border-[rgba(201,162,75,0.35)] pb-0.5">{{ t('modality.' + profile.modality) }}</dd></div>
         </dl>
       </header>
 
