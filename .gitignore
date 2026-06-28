@@ -12,3 +12,6 @@ dist
 coverage
 .wrangler
 logs
+
+# transient bug screenshots / scratch — share locally, keep out of the repo
+design/screenshots/

@@ -4,6 +4,8 @@ A global, bilingual (简体中文 / English) astrology **personality** site — 
 high-end astrology magazine, works like a precise personality instrument. Jamstack:
 SSG content pages + **client-side pure-function** scoring, no backend, no PII.
 
+**▶ Live demo — <https://astro-persona.heiyexyz.workers.dev/zh>** (deployed on Cloudflare Workers)
+
 > Built from the spec in [`design/`](./design): SRS, technical design, design system,
 > and the Claude-Code workflow. Visual source of truth: the Claude Design prototype,
 > distilled into [`design/TOKENS.md`](./design/TOKENS.md).

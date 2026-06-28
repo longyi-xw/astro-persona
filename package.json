@@ -5,6 +5,12 @@
   "type": "module",
   "packageManager": "pnpm@9.12.0",
   "description": "星座百科 / Astro Persona — 全球中英双语星座性格分析站（Jamstack：SSG + 客户端纯函数运算）",
+  "homepage": "https://astro-persona.heiyexyz.workers.dev/zh",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/longyi-xw/astro-persona.git"
+  },
+  "bugs": "https://github.com/longyi-xw/astro-persona/issues",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
